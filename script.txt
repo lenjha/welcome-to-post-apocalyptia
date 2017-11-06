@@ -1,13 +1,13 @@
-INTRO
-  slurry
-  the cold panic of having forgotten something important
+1. TITLE SCENE
 
-GAMEPLAY
-  CRYO
-  large tubes, resembling phone booths
-  The room is oddly warm.
+2. INTRO SCENE
+  All sight and sound meld into a thick slurry of memory.  It is quiet before you awake with the cold panic of having forgotten something important.
 
-END
+3. GAMEPLAY SCENES:
+  3.1 CRYO SCENE
+  There are large tubes, resembling phone booths flooded with gelatinous mouth wash.  A <span class="interactable">key card</span> sits on the lone metal table.  The room is oddly warm.
+
+4. END
   GAME OVER
     You died.  Or worse.
   ESCAPE
