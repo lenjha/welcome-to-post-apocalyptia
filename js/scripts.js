@@ -59,38 +59,38 @@
 // )
 //
 
-var useArray = ["door", "button"];
-var examineArray = ["cryotube", "floor"];
-var takeArray = ["screwdriver", "tape"];
+
+
+
 
 var useFeature = function(useInput) {
-  for (i = 0; i <= useArray.length; i++) {
-    if (usableArray(i) === useInput) {
-      return alert("YOU USED SOMETHING");
-    } else {
-      return alert("you used nothing");
+var useArray = ["DOOR", "BUTTON"];
+  for (i = 0; i < useArray.length; i++) {
+    if (useArray[i] === useInput) {
+      return "YOU USED SOMETHING";
     }
   }//end for loop
+  return "you used nothing";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {
-  for (i = 0; i <= examineArray.length; i++) {
-    if (stuffArray(i) === examineInput) {
-      return alert("YOU EXAMINED SOMETHING");
-    } else {
-      return alert("you examined nothing");
+var examineArray = ["CRYOTUBE", "FLOOR"];
+  for (i = 0; i < examineArray.length; i++) {
+    if (examineArray[i] === examineInput) {
+      return "YOU EXAMINED SOMETHING";
     }
   }//end for loop
+  return "you examined nothing";
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {
-  for (i = 0; i <= takeArray.length; i++) {
-    if (takeArray(i) === takeInput) {
-      return alert("YOU TOOK SOMETHING");
-    } else {
-      return alert("you took nothing");
+var takeArray = ["SCREWDRIVER", "TAPE"];
+  for (i = 0; i < takeArray.length; i++) {
+    if (takeArray[i] === takeInput) {
+      return "YOU TOOK SOMETHING";
     }
   }//end for loop
+  return "you took nothing";
 }//end examineFeature function
 
 
@@ -98,17 +98,23 @@ var takeFeature = function(takeInput) {
 
 
 $(document).ready(function(){
-  $("#use").submit(function(event){
-    event.preventDefault();
-    var useInput = $("#user-input").val().toUpperCase();
-
+  $("#use").click(function(){
+    // debugger
+    // event.preventDefault();
+    var useInput = $("#user-command").val().toUpperCase();
+    var useResult = useFeature(useInput);
+    alert(useResult);
   });//end use function
-  $("#examine").submit(function(event){
-    event.preventDefault();
-    var examineInput = $("#user-input").val().toUpperCase();
+  $("#examine").click(function(){
+    // event.preventDefault();
+    var examineInput = $("#user-command").val().toUpperCase();
+    var examineResult = examineFeature(examineInput);
+    alert(examineResult);
   });//end examine function
-  $("#take").submit(function(event){
-    event.preventDefault();
-    var takeInput = $("#user-input").val().toUpperCase();
+  $("#take").click(function(){
+    // event.preventDefault();
+    var takeInput = $("#user-command").val().toUpperCase();
+    var takeResult = takeFeature(takeInput);
+    alert(takeResult);
   });//end take function
 });//end doc ready function
