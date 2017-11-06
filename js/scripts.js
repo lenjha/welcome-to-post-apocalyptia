@@ -59,7 +59,39 @@
 // )
 //
 
+var useArray = ["door", "button"];
+var examineArray = ["cryotube", "floor"];
+var takeArray = ["screwdriver", "tape"];
 
+var useFeature = function(useInput) {
+  for (i = 0; i <= useArray.length; i++) {
+    if (usableArray(i) === useInput) {
+      return alert("YOU USED SOMETHING");
+    } else {
+      return alert("you used nothing");
+    }
+  }//end for loop
+}//end examineFeature function
+
+var examineFeature = function(examineInput) {
+  for (i = 0; i <= examineArray.length; i++) {
+    if (stuffArray(i) === examineInput) {
+      return alert("YOU EXAMINED SOMETHING");
+    } else {
+      return alert("you examined nothing");
+    }
+  }//end for loop
+}//end examineFeature function
+
+var takeFeature = function(takeInput) {
+  for (i = 0; i <= takeArray.length; i++) {
+    if (takeArray(i) === takeInput) {
+      return alert("YOU TOOK SOMETHING");
+    } else {
+      return alert("you took nothing");
+    }
+  }//end for loop
+}//end examineFeature function
 
 
 
@@ -69,6 +101,7 @@ $(document).ready(function(){
   $("#use").submit(function(event){
     event.preventDefault();
     var useInput = $("#user-input").val().toUpperCase();
+
   });//end use function
   $("#examine").submit(function(event){
     event.preventDefault();
