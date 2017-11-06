@@ -1,0 +1,14 @@
+INTRO
+  slurry
+  the cold panic of having forgotten something important
+
+GAMEPLAY
+  CRYO
+  large tubes, resembling phone booths
+  The room is oddly warm.
+
+END
+  GAME OVER
+    You died.  Or worse.
+  ESCAPE
+    You made it!
