@@ -10,10 +10,9 @@ _A simple escape text game_
 
 ## Set-up/Installation Requirements
 
-* _Step 1_
-* _Step 2_
-* _Step 3_
-* _Step 4_
+* _Open Terminal_
+* _Clone from https://github.com/lenjha/welcome-to-post-apocalyptia.git on GitHub_
+* _Open index.html from the Welcome-to-Post-Apocalyptia directory_
 
 _This game requires no servers to run._
 
