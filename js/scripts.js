@@ -87,7 +87,7 @@ var takeFeature = function(takeInput) {
 var takeArray = ["SCREWDRIVER", "TAPE"];
   for (i = 0; i < takeArray.length; i++) {
     if (takeArray[i] === takeInput) {
-      inventoryArray.push(takeArray[i])
+      inventoryArray.push(takeArray[i]);
       return "YOU TOOK SOMETHING";
     }
   }//end for loop
