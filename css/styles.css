@@ -1,0 +1,49 @@
+html{
+  box-shadow: 0 0 0 40px #333 inset;
+  padding: 0 30px;
+}
+
+body {
+  background-color: #333;
+}
+
+.header {
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  height: 7vh;
+  width: 100%;
+  z-index: 20;
+}
+
+.container {
+  display: flex;
+  height: 80vh;
+  background-color: #888;
+  background: url("../img/placeholder1.jpg") no-repeat center center fixed;
+  background-repeat: no-repeat;
+}
+
+.footer {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 18vh;
+}
+
+.footer-component {
+  display: flex;
+  background-color: #000;
+  height: 17vh;
+  flex: 0 1 auto;
+}
+
+#form-holder {
+  flex-basis: 70%;
+}
+
+#inventory {
+  flex-direction: row-reverse;
+}
