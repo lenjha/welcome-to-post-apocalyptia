@@ -61,7 +61,7 @@
 
 
 
-
+var inventoryArray = [];
 
 var useFeature = function(useInput) {
 var useArray = ["DOOR", "BUTTON"];
@@ -87,6 +87,7 @@ var takeFeature = function(takeInput) {
 var takeArray = ["SCREWDRIVER", "TAPE"];
   for (i = 0; i < takeArray.length; i++) {
     if (takeArray[i] === takeInput) {
+      inventoryArray.push(takeArray[i])
       return "YOU TOOK SOMETHING";
     }
   }//end for loop
@@ -116,5 +117,6 @@ $(document).ready(function(){
     var takeInput = $("#user-command").val().toUpperCase();
     var takeResult = takeFeature(takeInput);
     alert(takeResult);
+    alert(inventoryArray);
   });//end take function
 });//end doc ready function
