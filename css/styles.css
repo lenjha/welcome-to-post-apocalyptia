@@ -20,6 +20,10 @@ body {
   z-index: 20;
 }
 
+.interactable {
+  color: red;
+}
+
 .container {
   display: flex;
   height: 80vh;
