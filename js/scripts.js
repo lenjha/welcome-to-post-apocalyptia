@@ -81,6 +81,9 @@ var examineFeature = function(examineInput) {
     if (examineArray[i] === examineInput) {
       return "YOU EXAMINED SOMETHING";
     }
+    if (examineInput === "CRYOTUBE") {
+      return "The cryotube looks as though it is filled with blue raspberry Jell-O."
+    }
   }//end for loop
   return "you examined nothing";
 }//end examineFeature function
