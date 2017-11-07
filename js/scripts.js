@@ -16,9 +16,19 @@ var useArray = ["DOOR", "BUTTON"];
 var examineArray = ["CRYOTUBE", "FLOOR"];    //this array is for reference only!!
 var takeArray = ["SCREWDRIVER", "TAPE", "DOGFOOD"];
 
+/////CHANGES SCENE
+var unlock = function(useInput) {
+  if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
+    alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
+  }
+}
+
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {
   for (i = 0; i < useArray.length; i++) {
+    if (useInput === "DOOR" && !(inventoryArray.includes("SCREWDRIVER"))) {
+      alert("The door is locked shut.  Looks like it can be jimmied open though.");
+    }
     if (useArray[i] === useInput) {
       return "YOU USED SOMETHING";
     }
@@ -30,6 +40,9 @@ var examineFeature = function(examineInput) {
   for (i = 0; i < ObjExamine.items.length; i++) {
     if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
+    }
+    if (examineInput === "FLOOR") {
+      return "The floor smells cleans than it looks."
     }
   }//end for loop
   return "you examined nothing";
@@ -52,12 +65,16 @@ var takeFeature = function(takeInput) {
 
 ////FRONT END
 $(document).ready(function(){
+
+
+
   $("#use").click(function(){
     // debugger
     // event.preventDefault();
     var useInput = $("#user-command").val().toUpperCase();
     var useResult = useFeature(useInput);
     alert(useResult);
+    unlock(useInput);
   });//end use function
   $("#examine").click(function(){
     // event.preventDefault();
@@ -73,4 +90,11 @@ $(document).ready(function(){
     alert(inventoryArray);
     alert(takeArray);
   });//end take function
+  $('#help').click(function(){
+    $('.card').show();
+    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certian features in this area.");
+  });
+  $('.card').click(function(){
+    $('.card').hide();
+  });
 });//end doc ready function
