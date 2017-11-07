@@ -56,9 +56,14 @@ body {
 
 .text-and-submit{
   display: flex;
+  justify-content: flex-end;
   flex-direction: row;
   flex: 0 1 auto;
   flex-wrap: nowrap;
+}
+.button-list{
+  display: flex;
+  justify-content: flex-end;
 }
 .btn{
   background-color: #222;
@@ -66,7 +71,6 @@ body {
   text-transform: uppercase;
   font-size: 2em;
   border-radius: 5px;
-  height: 4em;
   flex: 0 1 auto;
 }
 
