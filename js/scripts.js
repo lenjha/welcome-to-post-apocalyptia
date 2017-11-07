@@ -124,4 +124,7 @@ $(document).ready(function(){
     $('.card').show();
     $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certian features in this area.");
   });
+  $('.card').click(function(){
+    $('.card').hide();
+  });
 });//end doc ready function
