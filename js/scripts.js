@@ -64,7 +64,7 @@
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"];
 var examineArray = ["CRYOTUBE", "FLOOR"];
-var takeArray = ["SCREWDRIVER", "TAPE"];
+var takeArray = ["SCREWDRIVER", "TAPE", "DOGFOOD"];
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {
@@ -87,8 +87,10 @@ var examineFeature = function(examineInput) {
 
 var takeFeature = function(takeInput) {
   for (i = 0; i < takeArray.length; i++) {
-    if (takeArray[i] === takeInput) {
+    if ((takeArray[i] === takeInput) && !(inventoryArray.includes(takeArray[i]))) {
       inventoryArray.push(takeArray[i]);
+      var removeItem = takeInput;
+      takeArray.splice( $.inArray(removeItem,takeArray) ,1 );
       return "YOU TOOK SOMETHING";
     }
   }//end for loop
@@ -119,5 +121,6 @@ $(document).ready(function(){
     var takeResult = takeFeature(takeInput);
     alert(takeResult);
     alert(inventoryArray);
+    alert(takeArray);
   });//end take function
 });//end doc ready function
