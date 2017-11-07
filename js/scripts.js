@@ -48,16 +48,15 @@ var tubeSmashed = false;
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {     ///USE STUFF
   for (i = 0; i < useArray.length; i++) {
-    if (useInput === "CRYOTUBE2" && (inventoryArray.includes("PIPE"))) {
+    if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
       return "You smash open the tube, revealing the CORPSE within";
 
-    }
-    if (useArray[i] === useInput) {
+    } else if (useArray[i] === useInput) {
       return "YOU USED SOMETHING";
     }
   }//end for loop
-  return "you used nothing";
+  return "nothing you can do";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
@@ -65,7 +64,7 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
     if ((examineInput === "CRYOTUBE1") && !(takeArray.includes("PIPE"))) {
       takeArray.push("PIPE");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
-    } else if ((examineInput === "CORPSE") && !(takeArray.includes("KEYCARD")) && (tubeSmashed = true)) {
+    } else if ((examineInput === "CORPSE") && !(takeArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       takeArray.push("KEYCARD");
       return "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?";
     } else if (ObjExamine.items[i] === examineInput) {
