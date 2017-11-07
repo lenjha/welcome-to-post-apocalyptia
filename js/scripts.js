@@ -59,16 +59,25 @@
 // )
 //
 
-
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"];
 var examineArray = ["CRYOTUBE", "FLOOR"];
 var takeArray = ["SCREWDRIVER", "TAPE"];
 
+/////CHANGES SCENE
+var unlock = function(useInput) {
+  if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
+    alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
+  }
+}
+
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {
   for (i = 0; i < useArray.length; i++) {
+    if (useInput === "DOOR" && !(inventoryArray.includes("SCREWDRIVER"))) {
+      alert("The door is locked shut.  Looks like it can be jimmied open though.");
+    }
     if (useArray[i] === useInput) {
       return "YOU USED SOMETHING";
     }
@@ -80,6 +89,12 @@ var examineFeature = function(examineInput) {
   for (i = 0; i < examineArray.length; i++) {
     if (examineArray[i] === examineInput) {
       return "YOU EXAMINED SOMETHING";
+    }
+    if (examineInput === "CRYOTUBE") {
+      return "The cryotube looks as though it is filled with blue raspberry Jell-O."
+    }
+    if (examineInput === "FLOOR") {
+      return "The floor smells cleans than it looks."
     }
   }//end for loop
   return "you examined nothing";
@@ -109,6 +124,7 @@ $(document).ready(function(){
     var useInput = $("#user-command").val().toUpperCase();
     var useResult = useFeature(useInput);
     alert(useResult);
+    unlock(useInput);
   });//end use function
   $("#examine").click(function(){
     // event.preventDefault();
