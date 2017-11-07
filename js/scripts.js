@@ -64,10 +64,10 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < ObjExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE1") && !(takeArray.includes("PIPE"))) {
       takeArray.push("PIPE");
-      return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
+      return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose <span class='interactable'>PIPE</span> that you might be able to pry off.";
     } else if ((examineInput === "CORPSE") && !(takeArray.includes("KEYCARD")) && (tubeSmashed = true)) {
       takeArray.push("KEYCARD");
-      return "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?";
+      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
     } else if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
     }
@@ -93,8 +93,6 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 ////FRONT END
 $(document).ready(function(){
 
-
-
   $("#use").click(function(){
     // debugger
     // event.preventDefault();
@@ -107,21 +105,21 @@ $(document).ready(function(){
     // event.preventDefault();
     var examineInput = $("#user-command").val().toUpperCase();
     var examineResult = examineFeature(examineInput);
-    alert(examineResult);
+    $("#description-text").text("");
+    $("#description-text").append(examineResult);
+    $("#description-pane").show();
+    // alert(examineResult);
   });//end examine function
   $("#take").click(function(){
     // event.preventDefault();
     var takeInput = $("#user-command").val().toUpperCase();
     var takeResult = takeFeature(takeInput);
-    alert(takeResult);
-    alert(inventoryArray);
-    alert(takeArray);
+    $("#description-text").text("");
+    $("#description-text").append(takeResult + "<p>Your inventory: " + inventoryArray + "</p>");
+    $("#description-pane").show();
   });//end take function
   $('#help').click(function(){
-    $('.card').show();
-    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
-  });
-  $('.card').click(function(){
-    $('.card').hide();
+    $("#description-text").text("In this area there are things you can 'LOOK' at. If you find an item you may 'TAKE' it for your inventory, you may also 'USE' your items on certain features in this area.");
+    $("#description-pane").show();
   });
 });//end doc ready function
