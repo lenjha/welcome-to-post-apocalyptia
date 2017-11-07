@@ -45,8 +45,8 @@ var unlock = function(useInput) {
 
 
 ////CRYO ROOM BOOLEANS
-var doorLocked = true;
-var tubeSmashed = false;
+var doorLocked = true; ///door to new area/victory, depending on time
+var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {     ///USE STUFF
