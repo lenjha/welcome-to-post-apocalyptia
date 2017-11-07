@@ -23,7 +23,7 @@ var ObjExamine = {
 
     "A typical g-34t keycard SCANNER. Useless to you, unless of course you have a KEYCARD..", //desc 4
 
-    "A door. Somewhat rusted, but you'll never get through without a KEYCARD"] // desc 5
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the SCANNER to have any hope of getting through."] // desc 5
 };
 
 
@@ -43,6 +43,9 @@ var unlock = function(useInput) {
   }
 }
 
+
+////CRYO ROOM BOOLEANS
+var doorLocked = true;
 var tubeSmashed = false;
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
@@ -52,8 +55,13 @@ var useFeature = function(useInput) {     ///USE STUFF
       tubeSmashed = true;
       return "You smash open the tube, revealing the CORPSE within";
 
-    } else if (useArray[i] === useInput) {
-      return "YOU USED SOMETHING";
+    } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
+      doorLocked = false;
+      return "After a short delay, the heavy door manages to creak open.";
+    }
+
+    else if (useArray[i] === useInput) {
+      return "TEMPORARY CONFIRMATION MESSAGE (but no change in world)";
     }
   }//end for loop
   return "nothing you can do";
