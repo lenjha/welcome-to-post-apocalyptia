@@ -89,8 +89,9 @@ var takeFeature = function(takeInput) {
   for (i = 0; i < takeArray.length; i++) {
     if ((takeArray[i] === takeInput) && !(inventoryArray.includes(takeArray[i]))) {
       inventoryArray.push(takeArray[i]);
-      var removeItem = takeInput;
-      takeArray.splice( $.inArray(removeItem,takeArray) ,1 );
+      // var removeItem = takeInput;
+      // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); 
+      takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
       return "YOU TOOK SOMETHING";
     }
   }//end for loop
