@@ -99,7 +99,6 @@ var takeFeature = function(takeInput) {
 
 
 
-
 ////FRONT END
 $(document).ready(function(){
   $("#use").click(function(){
