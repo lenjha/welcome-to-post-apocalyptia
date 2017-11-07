@@ -59,16 +59,26 @@
 // )
 //
 
-
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"];
 var examineArray = ["CRYOTUBE", "FLOOR"];
 var takeArray = ["SCREWDRIVER", "TAPE"];
 
+/////CHANGES SCENE
+var unlock = function(useInput) {
+  if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
+    alert("You manage to wriggle the door open with help from your trusty screwdriver.");
+
+  }
+}
+
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {
   for (i = 0; i < useArray.length; i++) {
+    if (useInput === "DOOR" && !(inventoryArray.includes("SCREWDRIVER"))) {
+      alert("The door is locked shut.  Looks like it can be jimmied open though.");
+    }
     if (useArray[i] === useInput) {
       return "YOU USED SOMETHING";
     }
@@ -106,6 +116,7 @@ $(document).ready(function(){
     var useInput = $("#user-command").val().toUpperCase();
     var useResult = useFeature(useInput);
     alert(useResult);
+    unlock(useInput);
   });//end use function
   $("#examine").click(function(){
     // event.preventDefault();
