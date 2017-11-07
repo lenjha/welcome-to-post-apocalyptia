@@ -58,7 +58,11 @@
 //   container = ["book", "thing"];
 // )
 //
-
+//////OBJECTS??
+var ObjExamine = {
+  "items": ["CRYOTUBE", "FLOOR"],
+  "description":["The cryotube looks as though it is filled with blue raspberry Jell-O.", "Believe it or not, it's a floor"]
+};
 
 //////LIST OF ARRAYS
 var inventoryArray = [];
@@ -77,9 +81,9 @@ var useFeature = function(useInput) {
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {
-  for (i = 0; i < examineArray.length; i++) {
-    if (examineArray[i] === examineInput) {
-      return "YOU EXAMINED SOMETHING";
+  for (i = 0; i < ObjExamine.items.length; i++) {
+    if (ObjExamine.items[i] === examineInput) {
+      return ObjExamine.description[i];
     }
     if (examineInput === "CRYOTUBE") {
       return "The cryotube looks as though it is filled with blue raspberry Jell-O."
@@ -93,7 +97,7 @@ var takeFeature = function(takeInput) {
     if ((takeArray[i] === takeInput) && !(inventoryArray.includes(takeArray[i]))) {
       inventoryArray.push(takeArray[i]);
       // var removeItem = takeInput;
-      // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); 
+      // takeArray.splice( $.inArray(removeItem,takeArray) ,1 );
       takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
       return "YOU TOOK SOMETHING";
     }
