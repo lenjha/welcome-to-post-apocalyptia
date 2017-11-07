@@ -1,73 +1,19 @@
-// var currentDisplay = function() {
-//   show
-// }
-//
-//
-//
-// function Scene(description, explanation, img, container){  //
-//   this.description;
-//   this.explanation;
-//   this.img;
-//   this.container = []
-// }
-//
-// function Player(name){
-//   this.name;
-//   this.inventory = [];
-//
-// }
-//
-// var itemArray = ["a","b","c"];
-//
-// function Item(name, description, itemImg){
-//   this.name = name;
-//   this.description = description;
-//   this.itemImg = itemImg;
-// }
-//
-// var getItem = function(itemInput) {
-//   if (container.includes(itemInput))
-//   inventory.push(itemInput);
-//   alert(inventory);
-// } else alert("no such item!");
-//
-// Player.prototype.examine = function(){
-//
-// }
-//
-// function Problem(keyItem){
-//   if (inventory.includes(keyItem){
-//     return success;
-//   } else
-//   return failure;
-// }
-//
-//
-// Player.prototype.use = function(item){
-//   if Player.inventory.includes(item){
-//     return success;
-//   } else
-//   return failure;
-// }
-//
-//
-// titleScreen = new Scene(
-//   description = "Welcome to hell";
-//   explanation = "You wake up in a tube, covered with blue slime. It tastes worse than it smells"
-//   img = backgroundTitle.jpg
-//   container = ["book", "thing"];
-// )
-//
-//////OBJECTS??
+
+//////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var ObjExamine = {
-  "items": ["CRYOTUBE", "FLOOR"],
-  "description":["The cryotube looks as though it is filled with blue raspberry Jell-O.", "Believe it or not, it's a floor"]
+  "items": [
+    "CRYOTUBE", //item 1
+     "FLOOR"], //item 2
+
+  "description":[
+    "The cryotube looks as though it is filled with blue raspberry Jell-O.", //desc 1
+     "Believe it or not, it's a floor"] //desc 2
 };
 
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"];
-var examineArray = ["CRYOTUBE", "FLOOR"];
+var examineArray = ["CRYOTUBE", "FLOOR"];    //this array is for reference only!!
 var takeArray = ["SCREWDRIVER", "TAPE", "DOGFOOD"];
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
@@ -84,9 +30,6 @@ var examineFeature = function(examineInput) {
   for (i = 0; i < ObjExamine.items.length; i++) {
     if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
-    }
-    if (examineInput === "CRYOTUBE") {
-      return "The cryotube looks as though it is filled with blue raspberry Jell-O."
     }
   }//end for loop
   return "you examined nothing";
