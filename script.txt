@@ -1,14 +1,38 @@
 1. TITLE SCENE
 
+
+
 2. INTRO SCENE
-  All sight and sound meld into a thick slurry of memory.  It is quiet before you awake with the cold panic of having forgotten something important.
+  Your thoughts, your dreams...
+
+  All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium.
+
+  It is quiet.
+
+  You awake to the sharp panic of having forgotten something important.
+
+  Something very important.
+
+
 
 3. GAMEPLAY SCENES:
   3.1 CRYO SCENE
-  There are large tubes, resembling phone booths flooded with gelatinous mouth wash.  A <span class="interactable">key card</span> sits on the lone metal table.  The room is oddly warm.
+  There are large tubes, resembling phone booths flooded with gelatinous mouth wash.   The room is oddly warm.  The <span class="interactable">door</span> looks as though it has not been opened in some time.  Maybe the <span class="interactable">terminal</span> to the left can be of assistance.
+
+  A <span class="interactable">screwdriver</span> sits on the lone metal table, but there is no dust present.  How long had you been asleep?
+
+  Where are you?
+
+
 
 4. END
   GAME OVER
     You died.  Or worse.
   ESCAPE
     You made it!
+
+
+
+use - door, terminal
+examine - cryo tube, floor
+take -screwdriver, tape
