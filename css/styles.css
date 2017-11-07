@@ -1,6 +1,8 @@
 html{
+  font-family: helvetica, arial, sans;
+  color: #fff;
   box-shadow: 0 0 0 40px #333 inset;
-  padding: 0 30px;
+  padding: 0 40px;
 }
 
 body {
@@ -25,16 +27,20 @@ body {
 }
 
 .container {
+  box-sizing: border-box;
+  padding-top: 7vh;
   display: flex;
   height: 80vh;
   background-color: #888;
-  background: url("../img/placeholder1.jpg") no-repeat center center fixed;
+  background-image: url("../img/placeholder1.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .footer {
   padding: 10px;
-  background-color: #fff;
+  background-color: #222;
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -44,72 +50,30 @@ body {
 .footer-component {
   display: flex;
   background-color: #000;
-  height: 17vh;
-  flex: 0 1 auto;
-}
-
-#form-holder {
-  flex-basis: 70%;
-}
-
-#inventory {
-  flex-direction: row-reverse;
-}
-
-/*NEW STYLING GARBAGE TO BE INTEGRATED INTO OLD CSS*/
-
-html{
-  font-family: helvetica, arial, sans;
-  color: #fff;
-  box-shadow: 0 0 0 40px #333 inset;
-  padding: 0 40px;
-}
-
-body {
-  background-color: #333;
-}
-
-
-.header {
-  background-color: #333;
-  color: #fff;
-  position: fixed;
-  height: 7vh;
-  width: 100%;
-  z-index: 20;
-}
-
-.container{
-  display: flex;
-  height: 80vh;
-  background-color: #888;
-}
-
-.footer{
-  width: 98%;
-  padding: 10px;
-  background-color: #222;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
   height: 18vh;
+  /*flex: 0 1 auto;*/
 }
 
-.footer-component{
-  background-color: #000;
-  height: 18vh;
-}
 .text-and-submit{
-  /*background-color: maroon;*/
   display: flex;
+  justify-content: flex-end;
   flex-direction: row;
   flex: 0 1 auto;
+  flex-wrap: nowrap;
+}
+.button-list{
+  display: flex;
+  justify-content: flex-end;
 }
 .btn{
+  background-color: #222;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 2em;
   border-radius: 5px;
-  height: 4em;
   flex: 0 1 auto;
 }
+
 .btn .action-btn{
   flex: 1 1 0;
 }
@@ -121,7 +85,6 @@ body {
 
 .form-group .input-control {
   flex: 1 1 auto;
-  display: block;
   margin-bottom: 10px;
   margin-right: 8px;
   padding: 4px;
@@ -133,9 +96,6 @@ input.input-control {
   width: 35em;
 }
 
-.btn-submit{
-  display: inline;
-}
 #inventory {
   background-color: #888;
   flex-direction: row-reverse;
