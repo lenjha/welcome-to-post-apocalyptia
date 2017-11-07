@@ -55,3 +55,89 @@ body {
 #inventory {
   flex-direction: row-reverse;
 }
+
+/*NEW STYLING GARBAGE TO BE INTEGRATED INTO OLD CSS*/
+
+html{
+  font-family: helvetica, arial, sans;
+  color: #fff;
+  box-shadow: 0 0 0 40px #333 inset;
+  padding: 0 40px;
+}
+
+body {
+  background-color: #333;
+}
+
+
+.header {
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  height: 7vh;
+  width: 100%;
+  z-index: 20;
+}
+
+.container{
+  display: flex;
+  height: 80vh;
+  background-color: #888;
+}
+
+.footer{
+  width: 98%;
+  padding: 10px;
+  background-color: #222;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 18vh;
+}
+
+.footer-component{
+  background-color: #000;
+  height: 18vh;
+}
+.text-and-submit{
+  /*background-color: maroon;*/
+  display: flex;
+  flex-direction: row;
+  flex: 0 1 auto;
+}
+.btn{
+  border-radius: 5px;
+  height: 4em;
+  flex: 0 1 auto;
+}
+.btn .action-btn{
+  flex: 1 1 0;
+}
+.form-group {
+  background-color: #555;
+  flex-direction: column;
+  flex: 3 1 30em;
+}
+
+.form-group .input-control {
+  flex: 1 1 auto;
+  display: block;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  padding: 4px;
+  margin-top: 0px;
+ }
+
+input.input-control {
+  height: 2.5em;
+  width: 35em;
+}
+
+.btn-submit{
+  display: inline;
+}
+#inventory {
+  background-color: #888;
+  flex-direction: row-reverse;
+  flex: 1 1 10em;
+}
