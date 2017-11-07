@@ -3,18 +3,20 @@
 var ObjExamine = {
   "items": [
     "CRYOTUBE", //item 1
-     "FLOOR"], //item 2
+     "CORPSE"], //item 2
 
   "description":[
-    "The cryotube looks as though it is filled with blue raspberry Jell-O.", //desc 1
-     "Believe it or not, it's a floor"] //desc 2
+    "The cryotube looks as though it is filled with blue raspberry Jell-O. It looks like it's falling apart, and the guy inside looks none too happy. You notice a loose pipe that you might be able to pry off", //desc 1
+     "He's dead, but he may still be useful to you. Could he be carrying something?"] //desc 2
 };
+
+
 
 //////LIST OF ARRAYS
 var inventoryArray = [];
-var useArray = ["DOOR", "BUTTON"];
-var examineArray = ["CRYOTUBE", "FLOOR"];    //this array is for reference only!!
-var takeArray = ["SCREWDRIVER", "TAPE", "DOGFOOD"];
+var useArray = ["DOOR", "BUTTON"]; //interaction objects
+var examineArray = ["CRYOTUBE", "FLOOR"];    //array for reference only. these can be described
+var takeArray = ["SCREWDRIVER", "TAPE", "DOGFOOD"]; //these can be removed from enviro
 
 /////CHANGES SCENE
 var unlock = function(useInput) {
@@ -22,6 +24,8 @@ var unlock = function(useInput) {
     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
   }
 }
+
+
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {
@@ -40,9 +44,6 @@ var examineFeature = function(examineInput) {
   for (i = 0; i < ObjExamine.items.length; i++) {
     if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
-    }
-    if (examineInput === "FLOOR") {
-      return "The floor smells cleans than it looks."
     }
   }//end for loop
   return "you examined nothing";
@@ -92,7 +93,7 @@ $(document).ready(function(){
   });//end take function
   $('#help').click(function(){
     $('.card').show();
-    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certian features in this area.");
+    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
   });
   $('.card').click(function(){
     $('.card').hide();
