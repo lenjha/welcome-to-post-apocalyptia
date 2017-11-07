@@ -68,7 +68,7 @@ var takeArray = ["SCREWDRIVER", "TAPE"];
 /////CHANGES SCENE
 var unlock = function(useInput) {
   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
-    alert("You manage to wriggle the door open with help from your trusty screwdriver.");
+    alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
 
   }
 }
