@@ -69,7 +69,6 @@ var takeArray = ["SCREWDRIVER", "TAPE"];
 var unlock = function(useInput) {
   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
-
   }
 }
 
@@ -93,6 +92,9 @@ var examineFeature = function(examineInput) {
     }
     if (examineInput === "CRYOTUBE") {
       return "The cryotube looks as though it is filled with blue raspberry Jell-O."
+    }
+    if (examineInput === "FLOOR") {
+      return "The floor smells cleans than it looks."
     }
   }//end for loop
   return "you examined nothing";
