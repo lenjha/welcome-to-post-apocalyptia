@@ -4,12 +4,11 @@
 //
 //
 //
-// function Scene(description, explanation, img, container){  //
-//   this.description;
-//   this.explanation;
-//   this.img;
-//   this.container = []
-// }
+function Scene(description, img){
+  this.description = description;
+  this.img = img;
+  this.container = [];
+}
 //
 // function Player(name){
 //   this.name;
@@ -51,14 +50,12 @@
 // }
 //
 //
-// titleScreen = new Scene(
-//   description = "Welcome to hell";
-//   explanation = "You wake up in a tube, covered with blue slime. It tastes worse than it smells"
-//   img = backgroundTitle.jpg
-//   container = ["book", "thing"];
-// )
-//
 
+//GLOBAL VARIABLES
+var titleScreen = new Scene ("title image", "img/help.jpg")
+var introScreen = new Scene ("this is where you learn about the premise of the game", "img/whoops.jpg")
+var cryoRoom = new Scene ("cryo room", "img/placeholder1.jpg")
+var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"];
@@ -66,6 +63,11 @@ var examineArray = ["CRYOTUBE", "FLOOR"];
 var takeArray = ["SCREWDRIVER", "TAPE"];
 
 /////CHANGES SCENE
+var changeScene = function(newScene){
+  debugger
+  $("#scene-view").attr('src', newScene.img)
+  currentScene = newScene;
+}
 var unlock = function(useInput) {
   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
@@ -115,7 +117,7 @@ var takeFeature = function(takeInput) {
 
 ////FRONT END
 $(document).ready(function(){
-  
+
 
 
   $("#use").click(function(){
@@ -140,8 +142,9 @@ $(document).ready(function(){
     alert(inventoryArray);
   });//end take function
   $('#help').click(function(){
-    $('.card').show();
-    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certian features in this area.");
+    changeScene(titleScreen);
+    // $('.card').show();
+    // $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certian features in this area.");
   });
   $('.card').click(function(){
     $('.card').hide();

@@ -15,10 +15,6 @@ body {
   width: 90px;
 }
 
-#submit{
-  float: right;
-}
-
 .interactable {
   color: red;
 }
@@ -36,17 +32,23 @@ body {
   color: red;
 }
 
-.container {
+.scene-display {
   box-sizing: border-box;
   padding-top: 7vh;
   display: flex;
   height: 80vh;
   background-color: #888;
-  background-image: url("../img/placeholder1.jpg");
+  /*background-image: url("../img/placeholder1.jpg");*/
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.scene-display img {
+  object-fit: cover;
+  width: 100%;
+}
+
 
 .footer {
   padding: 10px;
@@ -65,6 +67,7 @@ body {
 }
 
 .text-and-submit{
+  margin-top: 15px;
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
@@ -106,7 +109,9 @@ input.input-control {
   width: 35em;
 }
 
-#inventory {
+.inventory {
+  margin-left: 1em;
+  align-items: flex-start;
   background-color: #888;
   flex-direction: row-reverse;
   flex: 1 1 10em;
