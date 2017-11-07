@@ -9,6 +9,16 @@ body {
   background-color: #333;
 }
 
+.card{
+  display: none;
+  height: 140px;
+  width: 90px;
+}
+
+#submit{
+  float: right;
+}
+
 .interactable {
   color: red;
 }
