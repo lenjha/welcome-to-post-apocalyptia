@@ -1,64 +1,3 @@
-// var currentDisplay = function() {
-//   show
-// }
-//
-//
-//
-// function Scene(description, explanation, img, container){  //
-//   this.description;
-//   this.explanation;
-//   this.img;
-//   this.container = []
-// }
-//
-// function Player(name){
-//   this.name;
-//   this.inventory = [];
-//
-// }
-//
-// var itemArray = ["a","b","c"];
-//
-// function Item(name, description, itemImg){
-//   this.name = name;
-//   this.description = description;
-//   this.itemImg = itemImg;
-// }
-//
-// var getItem = function(itemInput) {
-//   if (container.includes(itemInput))
-//   inventory.push(itemInput);
-//   alert(inventory);
-// } else alert("no such item!");
-//
-// Player.prototype.examine = function(){
-//
-// }
-//
-// function Problem(keyItem){
-//   if (inventory.includes(keyItem){
-//     return success;
-//   } else
-//   return failure;
-// }
-//
-//
-// Player.prototype.use = function(item){
-//   if Player.inventory.includes(item){
-//     return success;
-//   } else
-//   return failure;
-// }
-//
-//
-// titleScreen = new Scene(
-//   description = "Welcome to hell";
-//   explanation = "You wake up in a tube, covered with blue slime. It tastes worse than it smells"
-//   img = backgroundTitle.jpg
-//   container = ["book", "thing"];
-// )
-//
-
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"];
@@ -94,7 +33,7 @@ var examineFeature = function(examineInput) {
       return "The cryotube looks as though it is filled with blue raspberry Jell-O."
     }
     if (examineInput === "FLOOR") {
-      return "The floor smells cleans than it looks."
+      return "The floor smells cleaner than it looks."
     }
   }//end for loop
   return "you examined nothing";
@@ -115,7 +54,7 @@ var takeFeature = function(takeInput) {
 
 ////FRONT END
 $(document).ready(function(){
-  
+
 
 
   $("#use").click(function(){
