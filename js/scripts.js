@@ -60,11 +60,14 @@
 //
 
 
-
+//////LIST OF ARRAYS
 var inventoryArray = [];
-
-var useFeature = function(useInput) {
 var useArray = ["DOOR", "BUTTON"];
+var examineArray = ["CRYOTUBE", "FLOOR"];
+var takeArray = ["SCREWDRIVER", "TAPE"];
+
+////LIST OF FUNCTIONS that empower USER ACTIONS
+var useFeature = function(useInput) {
   for (i = 0; i < useArray.length; i++) {
     if (useArray[i] === useInput) {
       return "YOU USED SOMETHING";
@@ -74,7 +77,6 @@ var useArray = ["DOOR", "BUTTON"];
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {
-var examineArray = ["CRYOTUBE", "FLOOR"];
   for (i = 0; i < examineArray.length; i++) {
     if (examineArray[i] === examineInput) {
       return "YOU EXAMINED SOMETHING";
@@ -84,7 +86,6 @@ var examineArray = ["CRYOTUBE", "FLOOR"];
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {
-var takeArray = ["SCREWDRIVER", "TAPE"];
   for (i = 0; i < takeArray.length; i++) {
     if (takeArray[i] === takeInput) {
       inventoryArray.push(takeArray[i]);
@@ -97,7 +98,7 @@ var takeArray = ["SCREWDRIVER", "TAPE"];
 
 
 
-
+////FRONT END
 $(document).ready(function(){
   $("#use").click(function(){
     // debugger
