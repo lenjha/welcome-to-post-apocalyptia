@@ -7,6 +7,16 @@ body {
   background-color: #333;
 }
 
+.card{
+  display: none;
+  height: 140px;
+  width: 90px;
+}
+
+#submit{
+  float: right;
+}
+
 .interactable {
   color: red;
 }
@@ -25,10 +35,13 @@ body {
 }
 
 .container {
+  padding-top:7vh;
   display: flex;
   height: 80vh;
   background-color: #888;
-  background: url("../img/placeholder1.jpg") no-repeat center center fixed;
+  background-image: url("../img/placeholder1.jpg");
+  background-position: center top;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -44,8 +57,8 @@ body {
 .footer-component {
   display: flex;
   background-color: #000;
-  height: 17vh;
-  flex: 0 1 auto;
+  height: 12vh;
+  /*flex: 0 1 auto;*/
 }
 
 #form-holder {
@@ -54,6 +67,7 @@ body {
 
 #inventory {
   flex-direction: row-reverse;
+  height:auto;
 }
 
 /*NEW STYLING GARBAGE TO BE INTEGRATED INTO OLD CSS*/
