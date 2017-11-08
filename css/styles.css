@@ -52,7 +52,7 @@ body {
   background-color: #333;
   color: #fff;
   position: fixed;
-  height: 7vh;
+  height: 5vh;
   width: 100%;
   z-index: 20;
 }
@@ -64,7 +64,7 @@ body {
 .scene-display {
   position: relative;
   box-sizing: border-box;
-  padding-top: 7vh;
+  padding-top: 5vh;
   display: flex;
   height: 80vh;
   background-color: #888;
