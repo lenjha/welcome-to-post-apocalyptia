@@ -76,7 +76,7 @@ var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg")
 var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg")
 var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg")
 var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg")
-var cryoRoom5 = new Scene ("cryo room", "img/cryroom-taken-keycard-nathan.jpg")
+var cryoRoom5 = new Scene ("cryo room", "img/cryoroom-taken-keycard-nathan.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
@@ -171,7 +171,11 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
   for (i = 0; i < objTake.items.length; i++) {
     if ((objTake.items[i] === takeInput) && !(inventoryArray.includes(objTake.items[i]))) {
       inventoryArray.push(objTake.items[i]);
-      if (objTake.items)
+      if (objTake.items[i] === "PIPE"){
+        changeScene(cryoRoom2);
+      } else if (objTake.items[i] === "KEYCARD"){
+        changeScene(cryoRoom5);
+      }
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
       // takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
