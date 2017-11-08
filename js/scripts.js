@@ -29,7 +29,7 @@ var ObjExamine = {
 
     "A typical g-34t keycard SCANNER. Useless to you, unless of course you have a KEYCARD..", //desc 4
 
-    "A door. Somewhat rusted, but you'll never get through without a KEYCARD"] // desc 5
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the SCANNER to have any hope of getting through."] // desc 5
 };
 
 
@@ -41,7 +41,7 @@ var cryoRoom = new Scene ("cryo room", "img/placeholder1.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
-var useArray = ["DOOR", "BUTTON"]; //interaction objects
+var useArray = ["DOOR", "BUTTON"]; //interaction objects.
 var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
 var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
@@ -59,31 +59,39 @@ var unlock = function(useInput) {
   }
 }
 
-var tubeSmashed = false;
+
+////CRYO ROOM BOOLEANS
+var doorLocked = true; ///door to new area/victory, depending on time
+var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {     ///USE STUFF
   for (i = 0; i < useArray.length; i++) {
-    if (useInput === "CRYOTUBE2" && (inventoryArray.includes("PIPE"))) {
+    if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
       return "You smash open the tube, revealing the CORPSE within";
 
+    } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
+      doorLocked = false;
+      return "After a short delay, the heavy door manages to creak open.";
     }
-    if (useArray[i] === useInput) {
-      return "YOU USED SOMETHING";
+
+    else if (useArray[i] === useInput) {
+      return "TEMPORARY CONFIRMATION MESSAGE (but no change in world)";
     }
   }//end for loop
-  return "you used nothing";
+  return "nothing you can do";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < ObjExamine.items.length; i++) {
-    if ((examineInput === "CRYOTUBE1") && !(takeArray.includes("PIPE"))) {
+    if ((examineInput === "CRYOTUBE1") && !(inventoryArray.includes("PIPE"))) {
       takeArray.push("PIPE");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
-    } else if ((examineInput === "CORPSE") && !(takeArray.includes("KEYCARD")) && (tubeSmashed = true)) {
+    } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       takeArray.push("KEYCARD");
-      return "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?";
+      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
     } else if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
     }
@@ -108,8 +116,14 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
-
   changeScene(titleScreen);
+
+  var descPane = document.getElementById("description-pane");
+  var closePane = document.getElementById("close-pane");
+  var span = document.getElementsByClassName("close-pane")[0];
+  $("#close-pane").click(function() {
+    $("#description-pane").hide();
+  });
 
   $("#user-input").submit(function(event){
     event.peventDefault();
@@ -127,15 +141,18 @@ $(document).ready(function(){
     // event.preventDefault();
     var examineInput = $("#user-command").val().toUpperCase();
     var examineResult = examineFeature(examineInput);
-    alert(examineResult);
+    $("#description-text").text("");
+    $("#description-text").append(examineResult);
+    $("#description-pane").show();
+    // alert(examineResult);
   });//end examine function
   $("#take").click(function(){
     // event.preventDefault();
     var takeInput = $("#user-command").val().toUpperCase();
     var takeResult = takeFeature(takeInput);
-    alert(takeResult);
-    alert(inventoryArray);
-    alert(takeArray);
+    $("#description-text").text("");
+    $("#description-text").append(takeResult + "<p>Your inventory: " + inventoryArray + "</p>");
+    $("#description-pane").show();
   });//end take function
   $('#help').click(function(){
     changeScene(introScreen);
