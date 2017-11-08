@@ -6,7 +6,7 @@ function Scene(description, img){
 }
 
 var clearInput = function(){
-  $("#user-input").text("");
+  $("#user-input").empty();
 }
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var ObjExamine = {
@@ -123,7 +123,6 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
-  changeScene(titleScreen);
   $('#start-button').click(function(){
     $('#start-button').hide();
     changeScene(cryoRoom);
@@ -137,7 +136,6 @@ $(document).ready(function(){
 
   $("#user-input").submit(function(event){
     event.preventDefault();
-    clearInput();
     alert("sumbission gotted");
   });
 
