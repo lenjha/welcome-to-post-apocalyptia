@@ -1,3 +1,22 @@
+#description-pane {
+  display: none;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 50px;
+}
+
+#description-text {
+  padding: 50px;
+}
+
+.close-pane {
+  float: right;
+}
+
+.close-pane:hover {
+  cursor: pointer;
+}
+
 html{
   font-family: helvetica, arial, sans;
   color: #fff;
@@ -15,8 +34,8 @@ body {
   width: 90px;
 }
 
-.interactable {
-  color: red;
+#submit{
+  float: right;
 }
 
 .header {
