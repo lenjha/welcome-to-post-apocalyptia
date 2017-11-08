@@ -17,7 +17,7 @@
 
 3. GAMEPLAY SCENES:
   3.1 CRYO SCENE
-  There are large tubes, resembling phone booths flooded with gelatinous mouth wash.   The room is oddly warm.  The <span class="interactable">door</span> looks as though it has not been opened in some time.  Maybe the <span class="interactable">terminal</span> to the left can be of assistance.
+  There are large pods, resembling phone booths flooded with gelatinous mouth wash.   The room is oddly warm.  The <span class="interactable">door</span> looks as though it has not been opened in some time.  Maybe the <span class="interactable">terminal</span> to the left can be of assistance.
 
   A <span class="interactable">screwdriver</span> sits on the lone metal table, but there is no dust present.  How long had you been asleep?
 
@@ -36,3 +36,19 @@
 use - door, terminal
 examine - cryo tube, floor
 take -screwdriver, tape
+
+examinable and useable
+
+CRYO POD 1:
+  the tube you were in
+CRYO POD 2:
+  Behind your tube you see another. This one appears to have had been damaged. The glass is cracked and the pipes and tubing on the exterior appear lose.
+  The blue cryo gel has oozed out of the cracks and dried on the side of the tube. Inside the tube you see a human form.
+PIPE:
+  -black, cold, and rusty it is a heavy pipe.
+CORPSE:
+  -the skin stained blue from the liquid in the pod is stretched on the bone, they obviously died a long time ago. Looking at the uniform it appears they may have been a person of authority. You find a keycard.
+KEYCARD:
+  -A small flat metal card with strange markings.
+CRYO DOOR:
+  -A heavy metal door. It is locked. to the right of the door is a scanner that would fit a small  flat object.

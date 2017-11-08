@@ -1,4 +1,10 @@
 
+function Scene(description, img){
+  this.description = description;
+  this.img = img;
+  this.container = [];
+}
+
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var ObjExamine = {
   "items": [
@@ -28,6 +34,11 @@ var ObjExamine = {
 
 
 
+//GLOBAL VARIABLES
+var titleScreen = new Scene ("title image", "img/help.jpg")
+var introScreen = new Scene ("this is where you learn about the premise of the game", "img/whoops.jpg")
+var cryoRoom = new Scene ("cryo room", "img/placeholder1.jpg")
+var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"]; //interaction objects.
@@ -37,6 +48,11 @@ var takeArray = []; //these can be removed from takeArray and placed in inventor
                     //objects to be added via examine: PIPE, KEYCARD
 
 /////CHANGES SCENE
+var changeScene = function(newScene){
+  debugger
+  $("#scene-view").attr('src', newScene.img)
+  currentScene = newScene;
+}
 var unlock = function(useInput) {
   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
@@ -75,7 +91,7 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       takeArray.push("KEYCARD");
-      return "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?";
+      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
     } else if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
     }
@@ -101,8 +117,6 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 ////FRONT END
 $(document).ready(function(){
 
-
-
   $("#use").click(function(){
     // debugger
     // event.preventDefault();
@@ -115,21 +129,21 @@ $(document).ready(function(){
     // event.preventDefault();
     var examineInput = $("#user-command").val().toUpperCase();
     var examineResult = examineFeature(examineInput);
-    alert(examineResult);
+    $("#description-text").text("");
+    $("#description-text").append(examineResult);
+    $("#description-pane").show();
+    // alert(examineResult);
   });//end examine function
   $("#take").click(function(){
     // event.preventDefault();
     var takeInput = $("#user-command").val().toUpperCase();
     var takeResult = takeFeature(takeInput);
-    alert(takeResult);
-    alert(inventoryArray);
-    alert(takeArray);
+    $("#description-text").text("");
+    $("#description-text").append(takeResult + "<p>Your inventory: " + inventoryArray + "</p>");
+    $("#description-pane").show();
   });//end take function
   $('#help').click(function(){
-    $('.card').show();
-    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
-  });
-  $('.card').click(function(){
-    $('.card').hide();
+    $("#description-text").text("In this area there are things you can 'LOOK' at. If you find an item you may 'TAKE' it for your inventory, you may also 'USE' your items on certain features in this area.");
+    $("#description-pane").show();
   });
 });//end doc ready function
