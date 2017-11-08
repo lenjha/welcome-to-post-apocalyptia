@@ -93,6 +93,14 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 ////FRONT END
 $(document).ready(function(){
 
+  var descPane = document.getElementById("description-pane");
+  var closePane = document.getElementById("close-pane");
+  var span = document.getElementsByClassName("close-pane")[0];
+  $("#close-pane").click(function() {
+    $("#description-pane").hide();
+  });
+
+
   $("#use").click(function(){
     // debugger
     // event.preventDefault();
