@@ -69,10 +69,22 @@ var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in
 //////FUNCTIONS TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   var splitInput = playerInput.split(" ");
-  var splitAction = splitInput.slice(0,1);
-  var splitItem = splitInput.slice(1,2);
-  return splitAction + " " + splitItem;
-}
+  var splitAction = splitInput[0];
+  var splitItem = splitInput[1];
+  // return splitAction + " " + splitItem; //VERIFY SPLIT
+  if (splitAction === "LOOK") {
+    return examineFeature(splitItem);
+  } else if (splitAction === "USE") {
+    return useFeature(splitItem);
+  } else if (splitAction === "TAKE") {
+    return takeFeature(splitItem);
+  } else {
+    return "Please restate command!";
+  }
+
+
+}//end split FXN
+
 // var actionChoice = function(actionInput, objectInput) {    ////WILL CHANNEL USER INPUT TO APPROPRIATE FXN/////
 //
 // }
