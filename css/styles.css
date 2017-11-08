@@ -9,7 +9,7 @@
   padding: 50px;
 }
 
-.close-pane {
+#close-pane {
   float: right;
 }
 
@@ -33,7 +33,6 @@ body {
   height: 140px;
   width: 90px;
 }
-
 
 #submit{
   float: right;
