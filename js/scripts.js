@@ -126,7 +126,9 @@ $(document).ready(function(){
   });
 
   $("#user-input").submit(function(event){
-    event.peventDefault();
+    event.preventDefault();
+    clearInput();
+    alert("sumbission gotted");
   });
 
   $("#use").click(function(){
@@ -143,7 +145,7 @@ $(document).ready(function(){
     var examineResult = examineFeature(examineInput);
     $("#description-text").text("");
     $("#description-text").append(examineResult);
-    $("#description-pane").show();
+    $("#description-pane").;
     // alert(examineResult);
   });//end examine function
   $("#take").click(function(){

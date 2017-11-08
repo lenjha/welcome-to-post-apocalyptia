@@ -35,7 +35,7 @@ body {
 }
 
 #submit{
-  float: right;
+  display: none;
 }
 
 .header {

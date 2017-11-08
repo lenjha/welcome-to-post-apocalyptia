@@ -6,7 +6,7 @@
 
 ## Description
 
-_A simple escape text game_
+A simple "escape the room" text adventure game that runs in the web browser.
 
 ## Set-up/Installation Requirements
 
