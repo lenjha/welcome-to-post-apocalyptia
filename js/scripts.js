@@ -17,7 +17,7 @@ var ObjExamine = {
 
     // "The cryotube looks as though it is filled with blue raspberry Jell-O. It looks like it's falling apart, and the guy inside looks none too happy. You notice a loose PIPE that you might be able to pry off", //desc 1
 
-    "This is a cryotube, but a different one. Flavvvvvvor-text!", //desc 2
+    "PLACEHOLDER - CORPSE IN HERE WITH KEYCARD", //desc 2
 
     // "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?", //desc 3
 
