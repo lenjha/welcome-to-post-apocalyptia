@@ -5,6 +5,9 @@ function Scene(description, img){
   this.container = [];
 }
 
+var clearInput = function(){
+  $("#user-input").text("");
+}
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var ObjExamine = {
   "items": [
@@ -129,7 +132,9 @@ $(document).ready(function(){
   });
 
   $("#user-input").submit(function(event){
-    event.peventDefault();
+    event.preventDefault();
+    clearInput();
+    alert("sumbission gotted");
   });
 
   $("#use").click(function(){
