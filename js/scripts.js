@@ -23,7 +23,7 @@ var ObjExamine = {
 
     // "The cryotube looks as though it is filled with blue raspberry Jell-O. It looks like it's falling apart, and the guy inside looks none too happy. You notice a loose PIPE that you might be able to pry off", //desc 1
 
-    "This is a cryotube, but a different one. Flavvvvvvor-text!", //desc 2
+    "CRYOTUBE 2 GUY INSIDE WITH KEYCARD", //desc 2
 
     // "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?", //desc 3
 
@@ -116,7 +116,7 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
-  changeScene(titleScreen);
+  // changeScene(titleScreen); /////COMMENt ME BACK IN whEN CHANGE SCENE EXISts
 
   var descPane = document.getElementById("description-pane");
   var closePane = document.getElementById("close-pane");
@@ -127,7 +127,7 @@ $(document).ready(function(){
 
   $("#user-input").submit(function(event){
     event.preventDefault();
-    clearInput();
+    // clearInput(); ///COMMENt ME BACK IN WHEN MY FXN EXIStS
     alert("sumbission gotted");
   });
 
@@ -145,7 +145,7 @@ $(document).ready(function(){
     var examineResult = examineFeature(examineInput);
     $("#description-text").text("");
     $("#description-text").append(examineResult);
-    $("#description-pane").;
+    $("#description-pane").show();
     // alert(examineResult);
   });//end examine function
   $("#take").click(function(){
