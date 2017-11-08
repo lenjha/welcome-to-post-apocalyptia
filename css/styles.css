@@ -9,7 +9,7 @@
   padding: 50px;
 }
 
-.close-pane {
+#close-pane {
   float: right;
 }
 
@@ -34,10 +34,6 @@ body {
   width: 90px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3e18ac8bdb23f8b466c737c51261ccb0677deb0c
 #submit{
   float: right;
 }
