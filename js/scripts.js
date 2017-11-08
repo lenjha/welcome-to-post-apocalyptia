@@ -51,24 +51,17 @@ var objUse = {
 
     "CRYOTUBE2",  //2
 
-    "SCANNER",  //3
-
-    "PIPE",  //4
-
-    "KEYCARD"],  //5
+    "SCANNER"],  //3
 
   description: [
     "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 0 Door
 
     "No way are you getting back in this damn thing.", //1 C1
 
-    "You can't get inside this thing with your bare hands.", //2 C2
+    "You can't get inside this thing with your bare hands.",
+    //2 C2
 
-    "A standard SCANNER that accepts a KEYCARD.", //3
-
-    "You can't use a PIPE on itself, but perhaps it will let you smash something?", //4
-
-    "KEYCARD can't be used on itself. Maybe it will allow you to use something else?"] //5
+    "A standard SCANNER that accepts a KEYCARD."] //3
 };//end USE object
 
 
@@ -155,22 +148,23 @@ var useFeature = function(useInput) {     ///USE STUFF
       return objUse.description[i];
     }
   }//end for loop
-  return "You can't use that.";
+  return "What are you trying to do?";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
+
       objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE2 frame.");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off. Oh, and there's a CORPSE in there.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
-      ObjTake.items.push("KEYCARD");
-      ObjTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
+      objTake.items.push("KEYCARD");
+      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
       changeScene(cryoRoom4);
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
-    } else if (ObjExamine.items[i] === examineInput) {
-      return ObjExamine.description[i];
+    } else if (objExamine.items[i] === examineInput) {
+      return objExamine.description[i];
 
     }
   }//end for loop
@@ -183,8 +177,12 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
       inventoryArray.push(objTake.items[i]);
       if (objTake.items[i] === "PIPE"){
         changeScene(cryoRoom2);
+        objUse.items.push("PIPE");
+        objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you smash something?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
+        objUse.items.push("KEYCARD");
+        objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else?");
       }
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
@@ -224,24 +222,21 @@ $(document).ready(function(){
   });//end user submit fxn
 
   $("#use").click(function(){
-    // debugger
-    // event.preventDefault();
     var useInput = $("#user-command").val().toUpperCase();
     var useResult = useFeature(useInput);
     alert(useResult);
-    // unlock(useInput);
+
   });//end use function
   $("#examine").click(function(){
-    // event.preventDefault();
+
     var examineInput = $("#user-command").val().toUpperCase();
     var examineResult = examineFeature(examineInput);
     $("#description-text").text("");
     $("#description-text").append(examineResult);
     $("#description-pane").show();
-    // alert(examineResult);
+
   });//end examine function
   $("#take").click(function(){
-    // event.preventDefault();
     var takeInput = $("#user-command").val().toUpperCase();
     var takeResult = takeFeature(takeInput);
     $("#description-text").text("");
