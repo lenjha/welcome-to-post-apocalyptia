@@ -83,8 +83,7 @@ var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg")
 var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg")
 var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg")
 var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg")
-var cryoRoom5 = new Scene ("cryo room", "img/cryroom-taken-keycard-nathan.jpg")
-var gameOver = new Scene ("victory?", "img/placeholder1.jpg")
+var cryoRoom5 = new Scene ("cryo room", "img/cryoroom-taken-keycard-nathan.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
@@ -155,7 +154,7 @@ var useFeature = function(useInput) {     ///USE STUFF
       return objUse.description[i];
     }
   }//end for loop
-  return "nothing you can do";
+  return "You can't use that.";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
@@ -174,38 +173,45 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
 
     }
   }//end for loop
-  return "nothing noteworthy";
+  return "There's nothing of interest here.";
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
   for (i = 0; i < objTake.items.length; i++) {
     if ((objTake.items[i] === takeInput) && !(inventoryArray.includes(objTake.items[i]))) {
       inventoryArray.push(objTake.items[i]);
+      if (objTake.items[i] === "PIPE"){
+        changeScene(cryoRoom2);
+      } else if (objTake.items[i] === "KEYCARD"){
+        changeScene(cryoRoom5);
+      }
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
       // takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
       return objTake.description[i];
     }
   }//end for loop
-  return "you took nothing";
+  return "You can't take that.";
 }//end examineFeature function
 
 
 
 ////FRONT END
 $(document).ready(function(){
+
+  //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
 
     $('#start-button').hide();
     changeScene(cryoRoom1);
   });
-  var descPane = document.getElementById("description-pane");
-  var closePane = document.getElementById("close-pane");
-  var span = document.getElementsByClassName("close-pane")[0];
+
+  //CLOSE TEXTUAL DESCRIPTION PANE
   $("#close-pane").click(function() {
     $("#description-pane").hide();
   });
 
+  //WHEN USER PRESSES ENTER TO SUBMIT TEXT COMMAND
   $("#user-input").submit(function(event){
     event.preventDefault();
     var playerInput = $("#user-command").val().toUpperCase();
