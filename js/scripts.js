@@ -9,7 +9,7 @@ var clearInput = function(){
   $("#user-input").empty();
 }
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
-var ObjExamine = {
+var objExamine = {
   items: [
 
     "CRYOTUBE1", // viewobj1
@@ -36,14 +36,14 @@ var ObjExamine = {
 };// end LOOK object
 
 ////////OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
-var ObjTake = {
+var objTake = {
   items: [],
 
   description: []
 };// end TAKE object
 
 ///////////OBJECTS for using
-var ObjUse = {
+var objUse = {
   items: [
     "DOOR",   //1
     "CRYOTUBE1",  //2
@@ -135,7 +135,7 @@ var useFeature = function(useInput) {     ///USE STUFF
   for (i = 0; i < useArray.length; i++) {
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
-      ObjExamine.description[1] = "You've already smashed this tube.";
+      objExamine.description[1] = "You've already smashed this tube.";
       return "You smash open the tube, revealing the CORPSE within";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
@@ -147,37 +147,38 @@ var useFeature = function(useInput) {     ///USE STUFF
       return "TEMPORARY CONFIRMATION MESSAGE (but no change in world)";
     }
   }//end for loop
-  return "nothing you can do";
+  return "You can't use that.";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
-  for (i = 0; i < ObjExamine.items.length; i++) {
+  for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE1") && !(inventoryArray.includes("PIPE"))) {
-      ObjTake.items.push("PIPE");
-      ObjTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
+      objTake.items.push("PIPE");
+      objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
-      ObjTake.items.push("KEYCARD");
-      ObjTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
+      objTake.items.push("KEYCARD");
+      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
-    } else if (ObjExamine.items[i] === examineInput) {
-      return ObjExamine.description[i];
+    } else if (objExamine.items[i] === examineInput) {
+      return objExamine.description[i];
     }
   }//end for loop
-  return "nothing noteworthy";
+  return "There's nothing of interest here.";
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
-  for (i = 0; i < ObjTake.items.length; i++) {
-    if ((ObjTake.items[i] === takeInput) && !(inventoryArray.includes(ObjTake.items[i]))) {
-      inventoryArray.push(ObjTake.items[i]);
+  for (i = 0; i < objTake.items.length; i++) {
+    if ((objTake.items[i] === takeInput) && !(inventoryArray.includes(objTake.items[i]))) {
+      inventoryArray.push(objTake.items[i]);
+      if (objTake.items)
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
       // takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
-      return ObjTake.description[i];
+      return objTake.description[i];
     }
   }//end for loop
-  return "you took nothing";
+  return "You can't take that.";
 }//end examineFeature function
 
 
