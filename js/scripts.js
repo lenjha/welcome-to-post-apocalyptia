@@ -7,9 +7,9 @@ function Scene(description, img){
 
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var ObjExamine = {
-  "items": [
+  items: [
 
-    // "CRYOTUBE1", // viewobj1
+    "CRYOTUBE1", // viewobj1
 
     "CRYOTUBE2", // viewobj2
 
@@ -19,11 +19,11 @@ var ObjExamine = {
 
     "DOOR"], //viewobj5
 
-  "description":[
+  description:[
 
-    // "The cryotube looks as though it is filled with blue raspberry Jell-O. It looks like it's falling apart, and the guy inside looks none too happy. You notice a loose PIPE that you might be able to pry off", //desc 1
+    "The cryotube looks even more broken without the PIPE attached", //desc 1
 
-    "PLACEHOLDER - CORPSE IN HERE WITH KEYCARD", //desc 2
+    "Another cryotube. There's a CORPSE inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
 
     // "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?", //desc 3
 
@@ -34,21 +34,14 @@ var ObjExamine = {
 
 ////////OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
 var ObjTake = {
-  "items": [
+  items: [],
 
-    "PIPE",  //takeobj1
-
-    "KEYCARD"], //takeobj2
-
-  "description": [
-    "With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.", //tdesc1
-
-     "Congratulations, you've robbed the dead guy. Acquired KEYCARD!"] //tdesc2
+  description: []
 };// end TAKE object
 
 ///////////OBJECTS for using
 var ObjUse = {
-  "items": []
+  items: ["DOOR","CRYOTUBE1","CRYOTUBE2","CORPSE","SCANNER","PIPE",""]
 }
 
 
@@ -99,6 +92,8 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
     return useFeature(splitItem);
   } else if (splitAction === "TAKE") {
     return takeFeature(splitItem);
+  } else if (splitAction === "INVENTORY") {
+    return inventoryArray;
   } else {
     return "Command must be in the form of 'action object' separated by a space.";
   }
@@ -112,6 +107,7 @@ var useFeature = function(useInput) {     ///USE STUFF
   for (i = 0; i < useArray.length; i++) {
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
+      ObjExamine.description[1] = "You've already smashed this tube.";
       return "You smash open the tube, revealing the CORPSE within";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
@@ -129,10 +125,12 @@ var useFeature = function(useInput) {     ///USE STUFF
 var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < ObjExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE1") && !(inventoryArray.includes("PIPE"))) {
-      takeArray.push("PIPE");
+      ObjTake.items.push("PIPE");
+      ObjTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
-      takeArray.push("KEYCARD");
+      ObjTake.items.push("KEYCARD");
+      ObjTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
     } else if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
