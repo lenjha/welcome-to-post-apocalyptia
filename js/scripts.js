@@ -77,6 +77,7 @@ var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg")
 var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg")
 var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg")
 var cryoRoom5 = new Scene ("cryo room", "img/cryroom-taken-keycard-nathan.jpg")
+var gameOver = new Scene ("victory?", "img/placeholder1.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
@@ -135,11 +136,13 @@ var useFeature = function(useInput) {     ///USE STUFF
   for (i = 0; i < useArray.length; i++) {
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
+      changeScene(cryoRoom3);
       ObjExamine.description[1] = "You've already smashed this tube.";
       return "You smash open the tube, revealing the CORPSE within";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
+      changeScene(gameOver);
       return "After a short delay, the heavy door manages to creak open.";
     }
 
@@ -159,7 +162,8 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       ObjTake.items.push("KEYCARD");
       ObjTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
-      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
+      changeScene(cryoRoom4);
+      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
     } else if (ObjExamine.items[i] === examineInput) {
       return ObjExamine.description[i];
     }
@@ -186,7 +190,7 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 $(document).ready(function(){
   $('#start-button').click(function(){
     $('#start-button').hide();
-    changeScene(cryoRoom);
+    changeScene(cryoRoom1);
   });
   var descPane = document.getElementById("description-pane");
   var closePane = document.getElementById("close-pane");
