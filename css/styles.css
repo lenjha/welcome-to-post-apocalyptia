@@ -1,4 +1,4 @@
-#description-pane {
+ #description-pane {
   display: none;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -11,6 +11,24 @@
 
 #close-pane {
   float: right;
+}
+
+#start-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  font-size: 300%;
+  background-color: red;
+  height: 50px;
+  padding: 5px;
+  width: 50%;
+  left: 25%;
+}
+
+#start-button:hover{
+  cursor: pointer;
 }
 
 .close-pane:hover {
@@ -52,6 +70,7 @@ body {
 }
 
 .scene-display {
+  position: relative;
   box-sizing: border-box;
   padding-top: 7vh;
   display: flex;

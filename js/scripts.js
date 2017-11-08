@@ -117,7 +117,10 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 ////FRONT END
 $(document).ready(function(){
   changeScene(titleScreen);
-
+  $('#start-button').click(function(){
+    $('#start-button').hide();
+    changeScene(cryoRoom);
+  });
   var descPane = document.getElementById("description-pane");
   var closePane = document.getElementById("close-pane");
   var span = document.getElementsByClassName("close-pane")[0];
@@ -155,7 +158,7 @@ $(document).ready(function(){
     $("#description-pane").show();
   });//end take function
   $('#help').click(function(){
-    changeScene(introScreen);
+    // changeScene(introScreen);
     // $('.card').show();
     // $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
   });
