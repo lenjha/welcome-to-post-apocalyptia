@@ -46,6 +46,11 @@ var ObjTake = {
      "Congratulations, you've robbed the dead guy. Acquired KEYCARD!"] //tdesc2
 };// end TAKE object
 
+///////////OBJECTS for using
+var ObjUse = {
+  "items": []
+}
+
 
 //GLOBAL VARIABLES
 var titleScreen = new Scene ("title image", "img/title.jpg")
