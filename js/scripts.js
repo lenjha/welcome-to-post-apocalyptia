@@ -35,8 +35,8 @@ var ObjExamine = {
 
 
 //GLOBAL VARIABLES
-var titleScreen = new Scene ("title image", "img/help.jpg")
-var introScreen = new Scene ("this is where you learn about the premise of the game", "img/whoops.jpg")
+var titleScreen = new Scene ("title image", "img/title.jpg")
+var introScreen = new Scene ("this is where you learn about the premise of the game", "img/help.jpg")
 var cryoRoom = new Scene ("cryo room", "img/placeholder1.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
@@ -49,11 +49,11 @@ var takeArray = []; //these can be removed from takeArray and placed in inventor
 
 /////CHANGES SCENE
 var changeScene = function(newScene){
-  debugger
   $("#scene-view").attr('src', newScene.img)
   currentScene = newScene;
 }
 var unlock = function(useInput) {
+  debugger
   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
   }
@@ -109,7 +109,11 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 ////FRONT END
 $(document).ready(function(){
 
+  changeScene(titleScreen);
 
+  $("#user-input").submit(function(event){
+    event.peventDefault();
+  });
 
   $("#use").click(function(){
     // debugger
@@ -134,8 +138,9 @@ $(document).ready(function(){
     alert(takeArray);
   });//end take function
   $('#help').click(function(){
-    $('.card').show();
-    $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
+    changeScene(introScreen);
+    // $('.card').show();
+    // $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
   });
   $('.card').click(function(){
     $('.card').hide();

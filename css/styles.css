@@ -114,5 +114,5 @@ input.input-control {
   align-items: flex-start;
   background-color: #888;
   flex-direction: row-reverse;
-  flex: 1 1 10em;
+  flex: 2 1 10em;
 }
