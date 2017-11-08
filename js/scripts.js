@@ -24,9 +24,9 @@ var objExamine = {
 
   description:[
 
-    "The cryotube looks even more broken without the PIPE attached", //desc 1
+    "You can hardly believe you crawled out of this damn thing.", //desc 1
 
-    "Another cryotube. There's a CORPSE inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
+    "You've taken the PIPE, rendering this thing even more busted. There's a CORPSE inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
 
     // "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?", //desc 3
 
@@ -45,30 +45,30 @@ var objTake = {
 ///////////OBJECTS for using
 var objUse = {
   items: [
-    "DOOR",   //1
+    "DOOR",   //0
 
-    "CRYOTUBE1",  //2
+    "CRYOTUBE1",  //1
 
-    "CRYOTUBE2",  //3
+    "CRYOTUBE2",  //2
 
-    "SCANNER",  //4
+    "SCANNER",  //3
 
-    "PIPE",  //5
+    "PIPE",  //4
 
-    "KEYCARD"],  //6
+    "KEYCARD"],  //5
 
   description: [
-    "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 1
+    "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 0 Door
 
-    "No way are you getting back in this damn thing.", //2
+    "No way are you getting back in this damn thing.", //1 C1
 
-    "Nothing left to do to this.", //3
+    "You can't get inside this thing with your bare hands.", //2 C2
 
-    "A standard SCANNER that accepts a KEYCARD.", //4
+    "A standard SCANNER that accepts a KEYCARD.", //3
 
-    "You can't use a PIPE on itself, but perhaps it will let you smash something?", //5
+    "You can't use a PIPE on itself, but perhaps it will let you smash something?", //4
 
-    "KEYCARD can't be used on itself. Maybe it will allow you to use something else?"] //6
+    "KEYCARD can't be used on itself. Maybe it will allow you to use something else?"] //5
 };//end USE object
 
 
@@ -141,6 +141,7 @@ var useFeature = function(useInput) {     ///USE STUFF
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
       objExamine.description[1] = "You've already smashed this tube.";
+      objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse? Actually, please don't answer that.");
       return "You smash open the tube, revealing the CORPSE within";
@@ -157,10 +158,10 @@ var useFeature = function(useInput) {     ///USE STUFF
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < objExamine.items.length; i++) {
-    if ((examineInput === "CRYOTUBE1") && !(inventoryArray.includes("PIPE"))) {
+    if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
-      objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
-      return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
+      objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE2 frame.");
+      return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off. Oh, and there's a CORPSE in there.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       objTake.items.push("KEYCARD");
       objTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
