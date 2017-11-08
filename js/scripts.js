@@ -52,17 +52,31 @@ var changeScene = function(newScene){
   $("#scene-view").attr('src', newScene.img)
   currentScene = newScene;
 }
-var unlock = function(useInput) {
-  debugger
-  if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
-    alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
-  }
-}
+// var unlock = function(useInput) {
+//   debugger
+//   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
+//     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
+//   }
+// }
 
 
 ////CRYO ROOM BOOLEANS
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+
+
+
+//////FUNCTIONS TO DECIDE WHICH USER ACTION TO USE
+var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
+  var splitInput = playerInput.split(" ");
+  var splitAction = splitInput.slice(0,1);
+  var splitItem = splitInput.slice(1,2);
+  return splitAction + " " + splitItem;
+}
+// var actionChoice = function(actionInput, objectInput) {    ////WILL CHANNEL USER INPUT TO APPROPRIATE FXN/////
+//
+// }
+
 
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
@@ -127,8 +141,11 @@ $(document).ready(function(){
 
   $("#user-input").submit(function(event){
     event.preventDefault();
+    var playerInput = $("#user-command").val().toUpperCase();
+    var playerResult = theDecider(playerInput);
+    alert(playerResult);
     // clearInput(); ///COMMENt ME BACK IN WHEN MY FXN EXIStS
-    alert("sumbission gotted");
+    // alert("sumbission gotted");  //ALERT FOR TROUBLESHOOTING
   });
 
   $("#use").click(function(){
