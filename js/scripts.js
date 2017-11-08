@@ -30,8 +30,21 @@ var ObjExamine = {
     "A typical g-34t keycard SCANNER. Useless to you, unless of course you have a KEYCARD..", //desc 4
 
     "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the SCANNER to have any hope of getting through."] // desc 5
-};
+};// end LOOK object
 
+////////OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
+var ObjTake = {
+  "items": [
+
+    "PIPE",  //takeobj1
+
+    "KEYCARD"], //takeobj2
+
+  "description": [
+    "With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.", //tdesc1
+
+     "Congratulations, you've robbed the dead guy. Acquired KEYCARD!"] //tdesc2
+};// end TAKE object
 
 
 //GLOBAL VARIABLES
@@ -82,7 +95,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else if (splitAction === "TAKE") {
     return takeFeature(splitItem);
   } else {
-    return "Please restate command!";
+    return "Command must be in the form of 'action object' separated by a space.";
   }
 
 
@@ -124,13 +137,13 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
-  for (i = 0; i < takeArray.length; i++) {
-    if ((takeArray[i] === takeInput) && !(inventoryArray.includes(takeArray[i]))) {
-      inventoryArray.push(takeArray[i]);
+  for (i = 0; i < ObjTake.items.length; i++) {
+    if ((ObjTake.items[i] === takeInput) && !(inventoryArray.includes(ObjTake.items[i]))) {
+      inventoryArray.push(ObjTake.items[i]);
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
-      takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
-      return "YOU TOOK SOMETHING";
+      // takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
+      return ObjTake.description[i];
     }
   }//end for loop
   return "you took nothing";
@@ -153,11 +166,11 @@ $(document).ready(function(){
     event.preventDefault();
     var playerInput = $("#user-command").val().toUpperCase();
     var playerResult = theDecider(playerInput);
-    alert(playerResult);
+    $("#description-text").text("");
+    $("#description-text").append(playerResult);
+    $("#description-pane").show();
     $("form").trigger("reset");
-    // clearInput(); ///COMMENt ME BACK IN WHEN MY FXN EXIStS
-    // alert("sumbission gotted");  //ALERT FOR TROUBLESHOOTING
-  });
+  });//end user submit fxn
 
   $("#use").click(function(){
     // debugger
@@ -165,7 +178,7 @@ $(document).ready(function(){
     var useInput = $("#user-command").val().toUpperCase();
     var useResult = useFeature(useInput);
     alert(useResult);
-    unlock(useInput);
+    // unlock(useInput);
   });//end use function
   $("#examine").click(function(){
     // event.preventDefault();
