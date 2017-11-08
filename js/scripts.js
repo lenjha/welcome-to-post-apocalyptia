@@ -1,4 +1,4 @@
-
+objTake
 function Scene(description, img){
   this.description = description;
   this.img = img;
@@ -9,7 +9,7 @@ var clearInput = function(){
   $("#user-input").empty();
 }
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
-var ObjExamine = {
+var objExamine = {
   items: [
 
     "CRYOTUBE1", // viewobj1
@@ -36,22 +36,27 @@ var ObjExamine = {
 };// end LOOK object
 
 ////////OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
-var ObjTake = {
+var objTake = {
   items: [],
 
   description: []
 };// end TAKE object
 
 ///////////OBJECTS for using
-var ObjUse = {
+var objUse = {
   items: [
     "DOOR",   //1
+
     "CRYOTUBE1",  //2
+
     "CRYOTUBE2",  //3
-    "CORPSE",  //4
-    "SCANNER",  //5
-    "PIPE",  //6
-    "KEYCARD"],  //7
+
+    "SCANNER",  //4
+
+    "PIPE",  //5
+
+    "KEYCARD"],  //6
+
   description: [
     "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 1
 
@@ -59,17 +64,19 @@ var ObjUse = {
 
     "Nothing left to do to this.", //3
 
-    "How exactly do you use a corpse? Actually, please don't answer that.",  //4
+    "A standard SCANNER that accepts a KEYCARD.", //4
 
-    "A standard SCANNER that accepts a KEYCARD.", //5
+    "You can't use a PIPE on itself, but perhaps it will let you smash something?", //5
 
-    "You can't use a pipe on itself, but perhaps it will let you smash something?", //5
-
-    "KEYCARD can't be used on itself. Maybe it will allow you to use something else?"]
-}
+    "KEYCARD can't be used on itself. Maybe it will allow you to use something else?"] //6
+};//end USE object
 
 
 //GLOBAL VARIABLES
+
+var doorLocked = true; ///door to new area/victory, depending on time
+var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+
 var titleScreen = new Scene ("title image", "img/title.jpg")
 var introScreen = new Scene ("this is where you learn about the premise of the game", "img/help.jpg")
 var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg")
@@ -99,16 +106,14 @@ var changeScene = function(newScene){
 // }
 
 
-////CRYO ROOM BOOLEANS
-var doorLocked = true; ///door to new area/victory, depending on time
-var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+
 
 /////FUNCTION TO CLEAR USER INPUT
 // var clearInput = function() {
 //   .reset();
 // }
 
-//////FUNCTIONS TO DECIDE WHICH USER ACTION TO USE
+//////FUNCTION TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   var splitInput = playerInput.split(" ");
   var splitAction = splitInput[0];
@@ -132,49 +137,49 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {     ///USE STUFF
-  for (i = 0; i < useArray.length; i++) {
+  for (i = 0; i < objUse.items.length; i++) {
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
-      ObjExamine.description[1] = "You've already smashed this tube.";
+      objExamine.description[1] = "You've already smashed this tube.";
+      objUse.items.push("CORPSE");
+      objUse.description.push("How exactly do you use a corpse? Actually, please don't answer that.");
       return "You smash open the tube, revealing the CORPSE within";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
       return "After a short delay, the heavy door manages to creak open.";
-    }
-
-    else if (useArray[i] === useInput) {
-      return "TEMPORARY CONFIRMATION MESSAGE (but no change in world)";
+    } else if (objUse.items[i] === useInput) {
+      return objUse.description[i];
     }
   }//end for loop
   return "nothing you can do";
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
-  for (i = 0; i < ObjExamine.items.length; i++) {
+  for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE1") && !(inventoryArray.includes("PIPE"))) {
-      ObjTake.items.push("PIPE");
-      ObjTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
+      objTake.items.push("PIPE");
+      objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
-      ObjTake.items.push("KEYCARD");
-      ObjTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
+      objTake.items.push("KEYCARD");
+      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
-    } else if (ObjExamine.items[i] === examineInput) {
-      return ObjExamine.description[i];
+    } else if (objExamine.items[i] === examineInput) {
+      return objExamine.description[i];
     }
   }//end for loop
   return "nothing noteworthy";
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
-  for (i = 0; i < ObjTake.items.length; i++) {
-    if ((ObjTake.items[i] === takeInput) && !(inventoryArray.includes(ObjTake.items[i]))) {
-      inventoryArray.push(ObjTake.items[i]);
+  for (i = 0; i < objTake.items.length; i++) {
+    if ((objTake.items[i] === takeInput) && !(inventoryArray.includes(objTake.items[i]))) {
+      inventoryArray.push(objTake.items[i]);
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
       // takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
-      return ObjTake.description[i];
+      return objTake.description[i];
     }
   }//end for loop
   return "you took nothing";
@@ -185,8 +190,9 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 ////FRONT END
 $(document).ready(function(){
   $('#start-button').click(function(){
+
     $('#start-button').hide();
-    changeScene(cryoRoom);
+    changeScene(cryoRoom1);
   });
   var descPane = document.getElementById("description-pane");
   var closePane = document.getElementById("close-pane");
