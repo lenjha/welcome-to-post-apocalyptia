@@ -84,6 +84,7 @@ var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg")
 var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg")
 var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg")
 var cryoRoom5 = new Scene ("cryo room", "img/cryroom-taken-keycard-nathan.jpg")
+var gameOver = new Scene ("victory?", "img/placeholder1.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
@@ -140,6 +141,7 @@ var useFeature = function(useInput) {     ///USE STUFF
   for (i = 0; i < objUse.items.length; i++) {
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
+      changeScene(cryoRoom3);
       objExamine.description[1] = "You've already smashed this tube.";
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse? Actually, please don't answer that.");
@@ -147,6 +149,7 @@ var useFeature = function(useInput) {     ///USE STUFF
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
+      changeScene(gameOver);
       return "After a short delay, the heavy door manages to creak open.";
     } else if (objUse.items[i] === useInput) {
       return objUse.description[i];
@@ -162,11 +165,13 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
       objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE1 frame.");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
-      objTake.items.push("KEYCARD");
-      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
-      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> sticking out of his pocket?";
-    } else if (objExamine.items[i] === examineInput) {
-      return objExamine.description[i];
+      ObjTake.items.push("KEYCARD");
+      ObjTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
+      changeScene(cryoRoom4);
+      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
+    } else if (ObjExamine.items[i] === examineInput) {
+      return ObjExamine.description[i];
+
     }
   }//end for loop
   return "nothing noteworthy";
