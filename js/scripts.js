@@ -1,4 +1,10 @@
 
+function Scene(description, img){
+  this.description = description;
+  this.img = img;
+  this.container = [];
+}
+
 //////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var ObjExamine = {
   "items": [
@@ -28,6 +34,11 @@ var ObjExamine = {
 
 
 
+//GLOBAL VARIABLES
+var titleScreen = new Scene ("title image", "img/help.jpg")
+var introScreen = new Scene ("this is where you learn about the premise of the game", "img/whoops.jpg")
+var cryoRoom = new Scene ("cryo room", "img/placeholder1.jpg")
+var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var useArray = ["DOOR", "BUTTON"]; //interaction objects
@@ -37,6 +48,11 @@ var takeArray = []; //these can be removed from takeArray and placed in inventor
                     //objects to be added via examine: PIPE, KEYCARD
 
 /////CHANGES SCENE
+var changeScene = function(newScene){
+  debugger
+  $("#scene-view").attr('src', newScene.img)
+  currentScene = newScene;
+}
 var unlock = function(useInput) {
   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
