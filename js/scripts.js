@@ -41,7 +41,28 @@ var ObjTake = {
 
 ///////////OBJECTS for using
 var ObjUse = {
-  items: ["DOOR","CRYOTUBE1","CRYOTUBE2","CORPSE","SCANNER","PIPE",""]
+  items: [
+    "DOOR",   //1
+    "CRYOTUBE1",  //2
+    "CRYOTUBE2",  //3
+    "CORPSE",  //4
+    "SCANNER",  //5
+    "PIPE",  //6
+    "KEYCARD"],  //7
+  description: [
+    "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 1
+
+    "No way are you getting back in this damn thing.", //2
+
+    "Nothing left to do to this.", //3
+
+    "How exactly do you use a corpse? Actually, please don't answer that.",  //4
+
+    "A standard SCANNER that accepts a KEYCARD.", //5
+
+    "You can't use a pipe on itself, but perhaps it will let you smash something?", //5
+
+    "KEYCARD can't be used on itself. Maybe it will allow you to use something else?"]
 }
 
 
