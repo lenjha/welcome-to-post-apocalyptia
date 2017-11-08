@@ -30,7 +30,7 @@ var ObjExamine = {
 
 //////LIST OF ARRAYS
 var inventoryArray = [];
-var useArray = ["DOOR", "BUTTON"]; //interaction objects
+var useArray = ["DOOR", "BUTTON"]; //interaction objects.
 var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
 var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
@@ -47,6 +47,7 @@ var unlock = function(useInput) {
 ////CRYO ROOM BOOLEANS
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
 var useFeature = function(useInput) {     ///USE STUFF
@@ -69,10 +70,10 @@ var useFeature = function(useInput) {     ///USE STUFF
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < ObjExamine.items.length; i++) {
-    if ((examineInput === "CRYOTUBE1") && !(takeArray.includes("PIPE"))) {
+    if ((examineInput === "CRYOTUBE1") && !(inventoryArray.includes("PIPE"))) {
       takeArray.push("PIPE");
       return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off.";
-    } else if ((examineInput === "CORPSE") && !(takeArray.includes("KEYCARD")) && (tubeSmashed === true)) {
+    } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       takeArray.push("KEYCARD");
       return "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?";
     } else if (ObjExamine.items[i] === examineInput) {
