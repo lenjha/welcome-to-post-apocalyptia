@@ -119,17 +119,19 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
+
+  //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
     $('#start-button').hide();
-    changeScene(cryoRoom);
+    changeScene(cryoRoom1);
   });
-  var descPane = document.getElementById("description-pane");
-  var closePane = document.getElementById("close-pane");
-  var span = document.getElementsByClassName("close-pane")[0];
+
+  //CLOSE TEXTUAL DESCRIPTION PANE
   $("#close-pane").click(function() {
     $("#description-pane").hide();
   });
 
+  //WHEN USER PRESSES ENTER TO SUBMIT TEXT COMMAND
   $("#user-input").submit(function(event){
     event.preventDefault();
     alert("sumbission gotted");
