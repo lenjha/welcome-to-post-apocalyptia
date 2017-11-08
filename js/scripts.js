@@ -40,7 +40,11 @@ var ObjExamine = {
 //GLOBAL VARIABLES
 var titleScreen = new Scene ("title image", "img/title.jpg")
 var introScreen = new Scene ("this is where you learn about the premise of the game", "img/help.jpg")
-var cryoRoom = new Scene ("cryo room", "img/placeholder1.jpg")
+var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg")
+var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg")
+var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg")
+var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg")
+var cryoRoom5 = new Scene ("cryo room", "img/cryroom-taken-keycard-nathan.jpg")
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
