@@ -64,7 +64,10 @@ var changeScene = function(newScene){
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
 
-
+/////FUNCTION TO CLEAR USER INPUT
+// var clearInput = function() {
+//   .reset();
+// }
 
 //////FUNCTIONS TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
@@ -84,11 +87,6 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
 
 
 }//end split FXN
-
-// var actionChoice = function(actionInput, objectInput) {    ////WILL CHANNEL USER INPUT TO APPROPRIATE FXN/////
-//
-// }
-
 
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
@@ -156,6 +154,7 @@ $(document).ready(function(){
     var playerInput = $("#user-command").val().toUpperCase();
     var playerResult = theDecider(playerInput);
     alert(playerResult);
+    $("form").trigger("reset");
     // clearInput(); ///COMMENt ME BACK IN WHEN MY FXN EXIStS
     // alert("sumbission gotted");  //ALERT FOR TROUBLESHOOTING
   });
