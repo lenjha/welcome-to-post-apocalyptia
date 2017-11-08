@@ -12,15 +12,25 @@
     <header class="header"></header>
 
     <!-- MAIN DISPLAY AREA -->
-    <div class="container">
+    <div class="container scene-display">
+      <img id="scene-view" src="img/placeholder1.jpg">
       <div class="placeholder1"></div>
+
       <div class="card" style="width: 20rem;">
         <!-- <img class="card-img-top" src="img/help.jpg" alt="Card image cap"> -->
         <div class="card-body">
           <p class="card-text"></p>
         </div>
+        <!-- INFORMATION AREA -->
       </div>
-    </div>
+      <div id="description-pane">
+        <span class="close-pane">&times;</span>
+        <div id="description-text">          
+          <p>HELLO HELLO</p>
+          <p>Welcome to the apocalypse</p>
+        </div>
+      </div>
+    </div> <!--container div-->
 
     <footer class="footer">
 
@@ -28,11 +38,16 @@
       <div class="footer-component form-group">
 
         <div class="text-and-submit">
-          <form id="user-input">            
+          <form id="user-input">
             <label for="user-command">What do you do?</label>
             <input type="text" id="user-command" class="input-control">
           </form>
         </div>
+
+
+
+
+
 
       <!-- ACTION BUTTONS -->
         <div class="button-list">
