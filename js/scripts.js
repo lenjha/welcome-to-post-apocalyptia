@@ -140,11 +140,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
       }
     }
   } else {
-<<<<<<< HEAD
-    return "Please restate your request.";
-=======
     return "Command must be in the form of <span class'interactable'>'action object'</span> separated by a space.";
->>>>>>> e75dadd195a0a10a79a64ad9fa766580368b6dd0
   }
 
   // if (splitAction === "LOOK") {
