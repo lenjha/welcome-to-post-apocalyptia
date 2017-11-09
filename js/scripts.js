@@ -11,7 +11,7 @@ function Item(name, img){
 var clearInput = function(){
   $("#user-input").empty();
 }
-//////OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
+//OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var objExamine = {
   items: [
 
@@ -38,14 +38,14 @@ var objExamine = {
     "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
 
-////////OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
+//OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
 var objTake = {
   items: [],
 
   description: []
 };// end TAKE object
 
-///////////OBJECTS for using
+//OBJECTS for using
 var objUse = {
   items: [
     "DOOR",   //0
@@ -86,7 +86,7 @@ var currentScene = titleScreen;
 // INVENTORY items
 var pipe = new Item("PIPE", "img/pipe.png");
 var keycard = new Item("KEYCARD", "img/keycard.png");
-//////LIST OF ARRAYS
+//LIST OF ARRAYS
 var inventoryArray = [];
 var inventoryImages = [pipe, keycard];
 // var useArray = ["DOOR", "BUTTON"]; //interaction objects.
@@ -95,7 +95,7 @@ var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    /
 var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
                     //objects to be added via examine: PIPE, KEYCARD
 
-/////CHANGES SCENE
+//CHANGES SCENE
 var changeScene = function(newScene){
   $("#scene-view").attr('src', newScene.img)
   currentScene = newScene;
@@ -107,8 +107,8 @@ var changeScene = function(newScene){
 
 
 
-//////FUNCTION TO DECIDE WHICH USER ACTION TO USE
-var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
+//FUNCTION TO DECIDE WHICH USER ACTION TO USE
+var theDecider = function(playerInput) {         //SPLIT USER STRING INTO 2
 
   var splitInput = playerInput.split(" ");
   if (splitInput.includes("LOOK") && !(splitInput.includes("TAKE")) && !(splitInput.includes("USE")) )  {
@@ -135,30 +135,11 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-=======
-  // if (splitAction === "LOOK") {
-  //   return examineFeature(splitItem);
-  // } else if (splitAction === "USE") {
-  //   return useFeature(splitItem);
-  // } else if (splitAction === "TAKE") {
-  //   return takeFeature(splitItem);
-  // } else if (splitAction === "INVENTORY") {
-  //   return inventoryArray;
-  // } else {
-  //   return "You can only perform one action on one object.";
-  // }
-
->>>>>>> master
->>>>>>> master
 }//end split FXN
 
 
-////LIST OF FUNCTIONS that empower USER ACTIONS
-var useFeature = function(useInput) {     ///USE STUFF
+//LIST OF FUNCTIONS that empower USER ACTIONS
+var useFeature = function(useInput) {     //USE STUFF
   for (i = 0; i < objUse.items.length; i++) {
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
@@ -227,7 +208,7 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 
 
-////FRONT END
+//FRONT END
 $(document).ready(function(){
   //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
