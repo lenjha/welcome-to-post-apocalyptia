@@ -77,9 +77,13 @@ var objUse = {
 
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+<<<<<<< HEAD
+var roomDescription = "The too-warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"<em>How do I get out of here?!</em>\"";
+=======
 
 var roomDescription = "The too-warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"<em>How do I get out of here?!</em>\"";
 
+>>>>>>> master
 //SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("intro image", "img/intro.jpg");
@@ -150,10 +154,15 @@ var useFeature = function(useInput) {     //USE STUFF
       objExamine.description[1] = "You've already smashed this tube.  Good work, hero.";
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
+      objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
+<<<<<<< HEAD
+      return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened.  Funny how you know that.<br><br>There seems to be something hanging from his neck, perhaps you should take a closer look.";
+=======
       objUse.description.push("How exactly do you use a <span class='interactable'>corpse</span>?  Actually, please don't answer that.");
 
       return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened.  Funny how you know that.<br><br>There seems to be something hanging from his neck, perhaps you should take a closer look.";
 
+>>>>>>> master
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
@@ -265,6 +274,7 @@ $(document).ready(function(){
 
   $('#help').click(function(){
     $("#description-text").text("");
+
 
     $("#description-text").append("<p>This game relies on a text command interface. To take actions in this world, you must enter commands of at least two words, like \"look at <span class=\"interactable\">cryotube1</span>.\" </p><br>" +
     "<p><span class='interactable'>LOOK</span>ing at an object will give you more information about that object.</p><br>" +
