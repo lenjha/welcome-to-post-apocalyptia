@@ -1,10 +1,13 @@
-objTake
 function Scene(description, img){
   this.description = description;
   this.img = img;
   this.container = [];
 }
 
+function Item(name, img){
+  this.name = name;
+  this.img = img;
+}
 var clearInput = function(){
   $("#user-input").empty();
 }
@@ -70,6 +73,7 @@ var objUse = {
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
 
+//SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("this is where you learn about the premise of the game", "img/help.jpg");
 var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg");
@@ -79,9 +83,13 @@ var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg");
 var cryoRoom5 = new Scene ("cryo room", "img/cryoroom-taken-keycard-nathan.jpg");
 var gameOver = new Scene ("game over", "img/victory.jpg");
 var currentScene = titleScreen;
+// INVENTORY items
+var pipe = new Item("PIPE", "img/pipe.png");
+var keycard = new Item("KEYCARD", "img/keycard.png");
 //////LIST OF ARRAYS
 var inventoryArray = [];
-var useArray = ["DOOR", "BUTTON"]; //interaction objects.
+var inventoryImages = [pipe, keycard];
+// var useArray = ["DOOR", "BUTTON"]; //interaction objects.
 var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
 var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
@@ -178,10 +186,13 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
       inventoryArray.push(objTake.items[i]);
       if (objTake.items[i] === "PIPE"){
         changeScene(cryoRoom2);
+        //add pipe image to INVENTORY DISPLAY
+        $("#inv1").attr('src', inventoryImages[0].img);
         objUse.items.push("PIPE");
         objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you bust something open?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
+        $("#inv2").attr('src', inventoryImages[1].img);
         objUse.items.push("KEYCARD");
         objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
       }

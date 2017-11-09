@@ -187,5 +187,6 @@ body {
   flex: 2 1 10em;
 }
 .inventory img {
-
+  height: 100px;
+  width: 100px;
 }
