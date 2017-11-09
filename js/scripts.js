@@ -249,7 +249,7 @@ $(document).ready(function(){
   });//end take function
   $('#help').click(function(){
     $("#description-text").text("");
-    $("#description-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' features in this environment.");
+    $("#description-text").append("In this area there are things you can <span class='interactable'>look</span> at. If you find an item you may <span class='interactable'>take</span> it for your inventory, you may also <span class='interactable'>use</span> features in this environment.");
     $("#description-pane").show();
   });
 
