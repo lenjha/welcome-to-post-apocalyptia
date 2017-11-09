@@ -1,16 +1,15 @@
-function Scene(description, img){
+function Scene(description, img, container){
   this.description = description;
   this.img = img;
-  this.container = [];
+  this.container = container;
 }
 
-function Item(name, img){
+function Item(name, img, use){
   this.name = name;
   this.img = img;
+  this.uses = use;
 }
-var clearInput = function(){
-  $("#user-input").empty();
-}
+
 //OBJECTS for examining. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!!
 var objExamine = {
   items: [
@@ -35,7 +34,7 @@ var objExamine = {
 
     "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a keycard..", //desc 4
 
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>KEYCARD</span> on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
 
 //OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -72,7 +71,9 @@ var objUse = {
 
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+
 var roomDescription = "The too-warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"<em>How do I get out of here?!</em>\"";
+
 //SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("intro image", "img/intro.jpg");
@@ -89,7 +90,11 @@ var keycard = new Item("KEYCARD", "img/keycard.png");
 //LIST OF ARRAYS
 var inventoryArray = [];
 var inventoryImages = [pipe, keycard];
+// var useArray = ["DOOR", "BUTTON"]; //interaction objects.
+var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
+var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
+                    //objects to be added via examine: PIPE, KEYCARD
 
 //CHANGES SCENE
 var changeScene = function(newScene){
@@ -131,8 +136,7 @@ var theDecider = function(playerInput) {         //SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
-
-}//end decider FXN
+}//end split FXN
 
 
 //LIST OF FUNCTIONS that empower USER ACTIONS
@@ -145,7 +149,9 @@ var useFeature = function(useInput) {     //USE STUFF
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
+
       return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened.  Funny how you know that.<br><br>There seems to be something hanging from his neck, perhaps you should take a closer look.";
+
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
@@ -159,6 +165,7 @@ var useFeature = function(useInput) {     //USE STUFF
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
+  debugger
   for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
@@ -254,7 +261,13 @@ $(document).ready(function(){
 
   $('#help').click(function(){
     $("#description-text").text("");
-    $("#description-text").append("<p>In this area there are <span class='interactable'>objects</span> you can look at.</p><br><p>If you find an <span class='interactable'>item</span> you may take it for your inventory.</p><br><p>You may also use <span class='interactable'>features</span> in this environment.</p><br><p>The general pattern is 'action + object'.</p>");
+
+    $("#description-text").append("<p>This game relies on a text command interface. To take actions in this world, you must enter commands of at least two words, like \"look at <span class=\"interactable\">cryotube1</span>.\" </p><br>" +
+    "<p><span class='interactable'>LOOK</span>ing at an object will give you more information about that object.</p><br>" +
+    "<p>If you find an <span class='interactable'>ITEM</span> you may be able to <span class='interactable'>TAKE</span> it and keep it in your inventory.</p><br>" +
+    "<p><span class='interactable'>USE</span> will allow you to either use an item from your inventory or an object in the environment (e.g. \"Use <span class='interactable'>key</span> on <span class='interactable'>lock</span>\").</p><br>" +
+    "<p>The general pattern is 'action + object'.</p>");
+
     $("#description-pane").show();
   });
 });//end doc ready function
