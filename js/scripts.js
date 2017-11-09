@@ -201,9 +201,16 @@ $(document).ready(function(){
 
   //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
-
     $('#start-button').hide();
     changeScene(cryoRoom1);
+    $("#description-text").text("");
+    $("#description-text").append("<p>Your thoughts, your dreams...</p> <br>" +
+      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium.  You vaguely recall being ushered into a building after news of something falling, but beyond that are mental holes that ebb and flow with the muck of your recollections.</p><br>" +
+      "<p>It is quiet now.</p><br>" +
+      "<p>The faint sound of mechanical hissing gradually swells as warmth crawls into your skin.</p><br>" +
+      "<p>Your consciousness awakens to the sharp panic of having forgotten something important.</p><br>" +
+      "<p>Something very important.</p>");
+    $("#description-pane").show();
   });
 
   //CLOSE TEXTUAL DESCRIPTION PANE
