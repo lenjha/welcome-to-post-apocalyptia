@@ -135,25 +135,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-=======
-  // if (splitAction === "LOOK") {
-  //   return examineFeature(splitItem);
-  // } else if (splitAction === "USE") {
-  //   return useFeature(splitItem);
-  // } else if (splitAction === "TAKE") {
-  //   return takeFeature(splitItem);
-  // } else if (splitAction === "INVENTORY") {
-  //   return inventoryArray;
-  // } else {
-  //   return "You can only perform one action on one object.";
-  // }
-
->>>>>>> master
->>>>>>> master
 }//end split FXN
 
 
