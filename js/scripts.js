@@ -56,7 +56,7 @@ var objUse = {
   description: [
     "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 0 Door
 
-    "No way are you getting back in this damn thing.  That gunk only looks like blue raspberry Jello-O.", //1 C1
+    "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jello-O.", //1 C1
 
     "You can't get inside this thing with your bare hands.",
     //2 C2
@@ -225,7 +225,9 @@ $(document).ready(function(){
   $("#use").click(function(){
     var useInput = $("#user-command").val().toUpperCase();
     var useResult = useFeature(useInput);
-    alert(useResult);
+    $("#description-text").text("");
+    $("#description-text").append(useResult);
+    $("#description-pane").show();
 
   });//end use function
   $("#examine").click(function(){
