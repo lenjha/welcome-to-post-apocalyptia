@@ -143,6 +143,8 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
+<<<<<<< HEAD
+=======
 
   // if (splitAction === "LOOK") {
   //   return examineFeature(splitItem);
@@ -156,6 +158,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   //   return "You can only perform one action on one object.";
   // }
 
+>>>>>>> master
 }//end split FXN
 
 
@@ -196,7 +199,6 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
     } else if (objExamine.items[i] === examineInput) {
       return objExamine.description[i];
-
     }
   }//end for loop
   return "The too warm room you are in has two <span class='interactable'>cryotubes</span>, and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like one of the <span class='interactable'>cyrotubes</span> is damaged. You begin to perspire and think to yourself... 'how do I get out of here?!'";
@@ -233,11 +235,11 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
-
   //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
     $('#start-button').hide();
     changeScene(cryoRoom1);
+    $(".footer").css("visibility", "visible");
     $("#description-text").text("");
     $("#description-text").append("<div class='opening'><p>Your thoughts, your dreams, puerile fantasies, all thought of individuality...</p> <br>" +
 
@@ -271,8 +273,8 @@ $(document).ready(function(){
 
   $("#use").click(function(){
     $("#user-command").val("use ");
-
   });//end use function
+
   $("#examine").click(function(){
     $("#user-command").val("look ");
   });//end examine function
@@ -286,6 +288,4 @@ $(document).ready(function(){
     $("#description-text").append("<p>In this area there are <span class='interactable'>OBJECTS</span> you can look at.</p><br><p>If you find an <span class='interactable'>ITEM</span> you may take it for your inventory.</p><br><p>You may also use <span class='interactable'>FEATURES</span> in this environment.</p><br><p>The general pattern is 'action + object'.</p>");
     $("#description-pane").show();
   });
-
-
 });//end doc ready function
