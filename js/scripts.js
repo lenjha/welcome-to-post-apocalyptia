@@ -143,8 +143,6 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
-<<<<<<< HEAD
-=======
 
   // if (splitAction === "LOOK") {
   //   return examineFeature(splitItem);
@@ -158,7 +156,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   //   return "You can only perform one action on one object.";
   // }
 
->>>>>>> master
+
 }//end split FXN
 
 
@@ -242,14 +240,14 @@ $(document).ready(function(){
     $(".footer").css("visibility", "visible");
     $("#description-text").text("");
     $("#description-text").append("<p>Your thoughts, your dreams...</p> <br>" +
-      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium.  You vaguely recall being ushered into a building after news of something falling, but beyond that are mental holes that ebb and flow with the muck of your recollections.</p><br>" +
-      "<p>It is quiet now.</p><br>" +
-      "<p>The faint sound of mechanical hissing gradually swells as warmth crawls into your skin.</p><br>" +
-      "<p>Your consciousness awakens to the sharp panic of having forgotten something important.</p><br>" +
-      "<p>Something very important.</p>");
+    "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium.  You vaguely recall being ushered into a building after news of something falling, but beyond that are mental holes that ebb and flow with the muck of your recollections.</p><br>" +
+    "<p>It is quiet now.</p><br>" +
+    "<p>The faint sound of mechanical hissing gradually swells as warmth crawls into your skin.</p><br>" +
+    "<p>Your consciousness awakens to the sharp panic of having forgotten something important.</p><br>" +
+    "<p>Something very important.</p>");
     $("#description-pane").show();
   });
-
+    
   //CLOSE TEXTUAL DESCRIPTION PANE
   $("#close-pane").click(function() {
     $("#description-pane").hide();
