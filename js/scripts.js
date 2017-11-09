@@ -33,7 +33,7 @@ var objExamine = {
 
     "He's dead, Jim.", //desc 3
 
-    "A typical g-34t keycard <span class='interactable'>SCANNER</span>. Useless to you, unless of course you have a KEYCARD..", //desc 4
+    "A typical g-34t keycard <span class='interactable'>SCANNER</span>. Useless to you, unless of course you have a <span class='interactable'>KEYCARD</span>..", //desc 4
 
     "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>KEYCARD</span> on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
@@ -57,14 +57,14 @@ var objUse = {
     "SCANNER"],  //3
 
   description: [
-    "A heavy <span class='interactable'>DOOR</span>. No way can you get through without using the <span class='interactable'>SCANNER</span>, but you'll need a KEYCARD.", // 0 Door
+    "A heavy <span class='interactable'>DOOR</span>. No way can you get through without using the <span class='interactable'>SCANNER</span>, but you'll need a <span='interactable'>KEYCARD</span>.", // 0 Door
 
     "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jello-O.", //1 C1
 
     "You can't get inside this thing with your bare hands.",
     //2 C2
 
-    "A standard SCANNER that accepts a KEYCARD."] //3
+    "A standard <span class='interactable'>SCANNER</span> that accepts a <span class='interactable'>KEYCARD</span>."] //3
 };//end USE object
 
 
@@ -187,13 +187,13 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
         $("#inv1").attr('src', inventoryImages[0].img);
         $("#inv1").attr('alt', "pipe");
         objUse.items.push("PIPE");
-        objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you bust something open?");
+        objUse.description.push("You can't use a <span class='interactable'>PIPE</span> on itself, but perhaps it will let you bust something open?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
         $("#inv2").attr('src', inventoryImages[1].img);
         $("#inv2").attr('alt', "keycard");
         objUse.items.push("KEYCARD");
-        objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
+        objUse.description.push("<span class='interactable'>KEYCARD</span> can't be used on itself. Maybe it will allow you to use something else.");
       }
 
       return objTake.description[i];
