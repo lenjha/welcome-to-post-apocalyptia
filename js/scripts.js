@@ -79,11 +79,11 @@ var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in
 
 var titleScreen = new Scene ("title image", "img/title.jpg")
 var introScreen = new Scene ("this is where you learn about the premise of the game", "img/help.jpg")
-var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg")
-var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg")
-var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg")
-var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg")
-var cryoRoom5 = new Scene ("cryo room", "img/cryoroom-taken-keycard-nathan.jpg")
+var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg");
+var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg");
+var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg");
+var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg");
+var cryoRoom5 = new Scene ("cryo room", "img/cryoroom-taken-keycard-nathan.jpg");
 var currentScene = titleScreen;
 //////LIST OF ARRAYS
 var inventoryArray = [];
@@ -248,11 +248,10 @@ $(document).ready(function(){
     $("#description-pane").show();
   });//end take function
   $('#help').click(function(){
-    // changeScene(introScreen);
-    // $('.card').show();
-    // $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
+    $("#description-text").text("");
+    $("#description-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' features in this environment.");
+    $("#description-pane").show();
   });
-  $('.card').click(function(){
-    $('.card').hide();
-  });
+
+
 });//end doc ready function
