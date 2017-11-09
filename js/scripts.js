@@ -26,13 +26,13 @@ var objExamine = {
 
     "You can hardly believe you crawled out of this damn thing.", //desc 1
 
-    "You've taken the PIPE, rendering this thing even more busted. There's a CORPSE inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
+    "You've taken the <span class='interactable'>PIPE</span>, rendering this thing even more busted. There's a <span class='interactable'>CORPSE</span> inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
 
     // "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?", //desc 3
 
-    "A typical g-34t keycard SCANNER. Useless to you, unless of course you have a KEYCARD..", //desc 4
+    "A typical g-34t keycard <span class='interactable'>SCANNER</span>. Useless to you, unless of course you have a KEYCARD..", //desc 4
 
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the SCANNER to have any hope of getting through."] // desc 5
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
 
 ////////OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -56,7 +56,7 @@ var objUse = {
   description: [
     "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 0 Door
 
-    "No way are you getting back in this damn thing.", //1 C1
+    "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jello-O.", //1 C1
 
     "You can't get inside this thing with your bare hands.",
     //2 C2
@@ -139,7 +139,7 @@ var useFeature = function(useInput) {     ///USE STUFF
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse? Actually, please don't answer that.");
-      return "You smash open the tube, revealing the CORPSE within";
+      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
@@ -157,10 +157,10 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
       objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE2 frame.");
-      return "The cryotube looks as though it is filled with blue raspberry Jell-O. You notice a loose PIPE that you might be able to pry off. Oh, and there's a CORPSE in there.";
+      return "The cryotube looks as though it is filled with moldy cheesecake. You notice a loose <span class='interactable'>PIPE</span> that you might be able to pry off. Oh, and there's a <span class='interactable'>CORPSE</span> in there.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       objTake.items.push("KEYCARD");
-      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired KEYCARD!");
+      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired <span class='interactable'>KEYCARD</span>!");
       changeScene(cryoRoom4);
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
     } else if (objExamine.items[i] === examineInput) {
@@ -178,11 +178,11 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
       if (objTake.items[i] === "PIPE"){
         changeScene(cryoRoom2);
         objUse.items.push("PIPE");
-        objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you smash something?");
+        objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you bust something open?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
         objUse.items.push("KEYCARD");
-        objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else?");
+        objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
       }
       // var removeItem = takeInput;
       // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
@@ -222,7 +222,9 @@ $(document).ready(function(){
   });//end user submit fxn
 
   $("#use").click(function(){
+
     $("#user-command").val("use ");
+
   });//end use function
   $("#examine").click(function(){
     $("#user-command").val("look ");
@@ -232,7 +234,7 @@ $(document).ready(function(){
   });//end take function
   $('#help').click(function(){
     $("#description-text").text("");
-    $("#description-text").append("In this area there are things you can <span class='interactable'>look</span> at. If you find an item you may <span class='interactable'>take</span> it for your inventory, you may also <span class='interactable'>use</span> features in this environment.");
+    $("#description-text").append("In this area there are things you can <span class='interactable'>look</span> at. If you find an item you may <span class='interactable'>take</span> it for your inventory.  You may also <span class='interactable'>use</span> features in this environment.  You may go about this in two different styles.  The first is by writing the action then the object upon which you would like to act, separated by a space, of course.  The other of these styles is to simply type in the object you would like to act upon, then clicking the button displaying the action you would like to take.");
     $("#description-pane").show();
   });
 
