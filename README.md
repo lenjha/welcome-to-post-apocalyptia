@@ -10,9 +10,9 @@ A simple "escape the room" text adventure game that runs in the web browser.
 
 ## Set-up/Installation Requirements
 
-* _Open Terminal_
-* _Clone from https://github.com/lenjha/welcome-to-post-apocalyptia.git on GitHub_
-* _Open in origdex.html from the Welcome-to-Post-Apocalyptia directory_
+* _Open Terminal or navigate to https://github.com/lenjha/welcome-to-post-apocalyptia _
+* _Clone from https://github.com/lenjha/welcome-to-post-apocalyptia.git on GitHub, or click download link and unzip_
+* _Open in index.html from the Welcome-to-Post-Apocalyptia directory_
 
 _This game requires no servers to run._
 
@@ -23,7 +23,7 @@ _We shall see..._
 _You are on your own._
 
 ## Technologies Used
-_Javascript, Jquery-3.2.1_
+_Javascript, Jquery-3.2.1, HTML, CSS_
 
 ### License
 _No license at the moment_
