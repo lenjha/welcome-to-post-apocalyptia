@@ -117,23 +117,24 @@ var changeScene = function(newScene){
 
 //////FUNCTION TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
+  // debugger
   var splitInput = playerInput.split(" ");
   // var splitAction = splitInput[0];
   // var splitItem = splitInput[1];
   // return splitAction + " " + splitItem; //VERIFY SPLIT
-  if (splitInput.includes("LOOK") && !(splitInput.includes("TAKE") && !(splitInput.includes("USE"))))  {
+  if (splitInput.includes("LOOK") && !(splitInput.includes("TAKE")) && !(splitInput.includes("USE")) )  {
     for (i = 0; i < objExamine.items.length; i++) {
       if (splitInput.includes(objExamine.items[i])) {
         return examineFeature(objExamine.items[i]);
       }
     }
-  } else if (splitInput.includes("TAKE") && !(splitInput.includes("LOOK") && !(splitInput.includes("USE"))))  {
+  } else if (splitInput.includes("TAKE") && !(splitInput.includes("LOOK")) && !(splitInput.includes("USE")) )  {
     for (i = 0; i < objTake.items.length; i++) {
       if (splitInput.includes(objTake.items[i])) {
         return takeFeature(objTake.items[i]);
       }
     }
-  } else if (splitInput.includes("USE") && !(splitInput.includes("LOOK") && !(splitInput.includes("TAKE"))))  {
+  } else if (splitInput.includes("USE") && !(splitInput.includes("LOOK")) && !(splitInput.includes("TAKE")) )  {
     for (i = 0; i < objUse.items.length; i++) {
       if (splitInput.includes(objUse.items[i])) {
         return useFeature(objUse.items[i]);
