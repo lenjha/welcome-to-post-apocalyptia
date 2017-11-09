@@ -32,9 +32,11 @@ var objExamine = {
 
     "He's dead, Jim.", //desc 3
 
-    "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a keycard..", //desc 4
 
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
+    "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a <span class='interactable'>keycard</span>..", //desc 4
+
+
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>keycard</span> on the <span class='interactable'>scanner</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
 
 //OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -56,14 +58,18 @@ var objUse = {
     "SCANNER"],  //3
 
   description: [
-    "A heavy <span class='interactable'>door</span>. No way can you get through without using the <span class='interactable'>scanner</span>, but you'll need a keycard.", // 0 Door
+
+    "A heavy <span class='interactable'>door</span>. No way can you get through without using the <span class='interactable'>scanner</span>, but you'll need a <span='interactable'>keycard</span>.", // 0 Door
+
 
     "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jell-O.", //1 C1
 
     "You can't get inside this thing with your bare hands.",
     //2 C2
 
-    "A standard scanner that accepts a keycard."] //3
+
+    "A standard <span class='interactable'>scanner</span> that accepts a <span class='interactable'>keycard</span>."] //3
+
 };//end USE object
 
 
@@ -90,11 +96,7 @@ var keycard = new Item("KEYCARD", "img/keycard.png");
 //LIST OF ARRAYS
 var inventoryArray = [];
 var inventoryImages = [pipe, keycard];
-// var useArray = ["DOOR", "BUTTON"]; //interaction objects.
-var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
-var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
-                    //objects to be added via examine: PIPE, KEYCARD
 
 //CHANGES SCENE
 var changeScene = function(newScene){
@@ -148,7 +150,7 @@ var useFeature = function(useInput) {     //USE STUFF
       objExamine.description[1] = "You've already smashed this tube.  Good work, hero.";
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
-      objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
+      objUse.description.push("How exactly do you use a <span class='interactable'>corpse</span>?  Actually, please don't answer that.");
 
       return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened.  Funny how you know that.<br><br>There seems to be something hanging from his neck, perhaps you should take a closer look.";
 
@@ -156,7 +158,7 @@ var useFeature = function(useInput) {     //USE STUFF
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
       changeScene(gameOver);
-      return "The scanner light remains red after you initially jam the keycard into position.  You flip the keycard by your face and blow into the cartridge before trying it again.  After a short delay, the light glows green and the heavy door squeals open.";
+      return "The <span class='interactable'>scanner</span> light remains red after you initially jam the <span class='interactable'>keycard</span> into position.  You flip the <span class='interactable'>keycard</span> by your face and blow into the cartridge before trying it again.  After a short delay, the light glows green and the heavy door squeals open.";
     } else if (objUse.items[i] === useInput) {
       return objUse.description[i];
     }
@@ -227,7 +229,9 @@ $(document).ready(function(){
 
       "<p>The faint sound of mechanical hissing gradually swells, cutting into your ear as warmth tickles your skin.  Your consciousness is alert to the sharp panic of having forgotten something important.</p>" +
 
-      "<p>Something very important.</p>");
+      "<p>Something very important.</p><br>" +
+
+      "<p><em>(if this is your first text-adventure, click the help button!)</em></p>");
     $("#description-pane").show();
   });
 
