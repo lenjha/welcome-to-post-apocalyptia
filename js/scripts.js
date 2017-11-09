@@ -159,6 +159,7 @@ var useFeature = function(useInput) {     //USE STUFF
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
       changeScene(gameOver);
+      $(".audio").text("")
       return "The <span class='interactable'>scanner</span> light remains red after you initially jam the <span class='interactable'>keycard</span> into position.  You flip the <span class='interactable'>keycard</span> by your face and blow into the cartridge before trying it again.  After a short delay, the light glows green and the heavy door squeals open.";
     } else if (objUse.items[i] === useInput) {
       return objUse.description[i];
@@ -277,5 +278,6 @@ $(document).ready(function(){
     "<p>The general pattern is 'action + object'.</p>");
 
     $("#description-pane").show();
+
   });
 });//end doc ready function

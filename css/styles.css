@@ -67,6 +67,10 @@ body {
   background-color: #333;
 }
 
+.audio{
+  display: none;
+}
+
 .card{
   display: none;
   height: 140px;
