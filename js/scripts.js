@@ -35,11 +35,7 @@ var objExamine = {
 
     "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a keycard..", //desc 4
 
-<<<<<<< HEAD
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a keycard on the <span class='interactable'>scanner</span> to have any hope of getting through."] // desc 5
-=======
     "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>KEYCARD</span> on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
->>>>>>> master
 };// end LOOK object
 
 //OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -75,13 +71,8 @@ var objUse = {
 //GLOBAL VARIABLES
 
 var doorLocked = true; ///door to new area/victory, depending on time
-<<<<<<< HEAD
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
 var roomDescription = "The too-warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"<em>How do I get out of here?!</em>\"";
-=======
-var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in objTake
-var roomDescription = "The too warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"How do I get out of here?!\"";
->>>>>>> master
 //SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("intro image", "img/intro.jpg");
@@ -154,11 +145,7 @@ var useFeature = function(useInput) {     //USE STUFF
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
-<<<<<<< HEAD
-      return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened. <br><br> Funny how you know that.";
-=======
-      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within.  This is actually not the worst piñata you've ever opened. There seems to be something hanging from his neck, perhaps you should take a closer look.";
->>>>>>> master
+      return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened.  Funny how you know that.<br><br>There seems to be something hanging from his neck, perhaps you should take a closer look.";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
