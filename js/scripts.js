@@ -35,7 +35,7 @@ var objExamine = {
 
     "A typical g-34t keycard <span class='interactable'>SCANNER</span>. Useless to you, unless of course you have a KEYCARD..", //desc 4
 
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>KEYCARD</span> on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
 
 //OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -145,7 +145,7 @@ var useFeature = function(useInput) {     //USE STUFF
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
-      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within.  This is actually not the worst piñata you've ever opened.";
+      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within.  This is actually not the worst piñata you've ever opened. There seems to be something hanging from his neck, perhaps you should take a closer look.";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
