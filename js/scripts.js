@@ -229,7 +229,9 @@ $(document).ready(function(){
 
       "<p>The faint sound of mechanical hissing gradually swells, cutting into your ear as warmth tickles your skin.  Your consciousness is alert to the sharp panic of having forgotten something important.</p>" +
 
-      "<p>Something very important.</p>");
+      "<p>Something very important.</p><br>" +
+
+      "<p><em>(if this is your first text-adventure, click the help button!)</em></p>");
     $("#description-pane").show();
   });
 

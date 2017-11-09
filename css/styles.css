@@ -12,6 +12,9 @@
   font-size: 1.5em;
 }
 
+#description-pane p em{
+  color: #f7ac2c
+}
 #description-text {
   padding: 20px;
 }
@@ -45,6 +48,10 @@
   cursor: pointer;
 }
 
+#help {
+  margin-left: 2em;
+  color: #f7ac2c;
+}
 .close-pane:hover {
   cursor: pointer;
 }
