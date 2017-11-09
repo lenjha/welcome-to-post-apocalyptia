@@ -1,4 +1,3 @@
-objTake
 function Scene(description, img){
   this.description = description;
   this.img = img;
@@ -16,7 +15,7 @@ var objExamine = {
 
     "CRYOTUBE2", // viewobj2
 
-    // "CORPSE", //viewobj3
+    "CORPSE", //viewobj3
 
     "SCANNER", //viewobj4
 
@@ -28,7 +27,7 @@ var objExamine = {
 
     "You've taken the PIPE, rendering this thing even more busted. There's a CORPSE inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
 
-    // "He's dead, but he may still be useful to you. Could that be a KEYCARD sticking out of his pocket?", //desc 3
+    "He's dead, Jim.", //desc 3
 
     "A typical g-34t keycard SCANNER. Useless to you, unless of course you have a KEYCARD..", //desc 4
 
@@ -110,21 +109,42 @@ var changeScene = function(newScene){
 //////FUNCTION TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   var splitInput = playerInput.split(" ");
-  var splitAction = splitInput[0];
-  var splitItem = splitInput[1];
+  // var splitAction = splitInput[0];
+  // var splitItem = splitInput[1];
   // return splitAction + " " + splitItem; //VERIFY SPLIT
-  if (splitAction === "LOOK") {
-    return examineFeature(splitItem);
-  } else if (splitAction === "USE") {
-    return useFeature(splitItem);
-  } else if (splitAction === "TAKE") {
-    return takeFeature(splitItem);
-  } else if (splitAction === "INVENTORY") {
-    return inventoryArray;
+  if (splitInput.includes("LOOK") && !(splitInput.includes("TAKE") && !(splitInput.includes("USE"))))  {
+    for (i = 0; i < objExamine.items.length; i++) {
+      if (splitInput.includes(objExamine.items[i])) {
+        return examineFeature(objExamine.items[i]);
+      }
+    }
+  } else if (splitInput.includes("TAKE") && !(splitInput.includes("LOOK") && !(splitInput.includes("USE"))))  {
+    for (i = 0; i < objTake.items.length; i++) {
+      if (splitInput.includes(objTake.items[i])) {
+        return takeFeature(objTake.items[i]);
+      }
+    }
+  } else if (splitInput.includes("USE") && !(splitInput.includes("LOOK") && !(splitInput.includes("TAKE"))))  {
+    for (i = 0; i < objUse.items.length; i++) {
+      if (splitInput.includes(objUse.items[i])) {
+        return useFeature(objUse.items[i]);
+      }
+    }
   } else {
-    return "Command must be in the form of 'action object' separated by a space.";
+    return "Please restate your request.";
   }
 
+  // if (splitAction === "LOOK") {
+  //   return examineFeature(splitItem);
+  // } else if (splitAction === "USE") {
+  //   return useFeature(splitItem);
+  // } else if (splitAction === "TAKE") {
+  //   return takeFeature(splitItem);
+  // } else if (splitAction === "INVENTORY") {
+  //   return inventoryArray;
+  // } else {
+  //   return "You can only perform one action on one object.";
+  // }
 
 }//end split FXN
 
