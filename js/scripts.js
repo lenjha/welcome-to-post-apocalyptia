@@ -97,10 +97,6 @@ var changeScene = function(newScene){
   currentScene = newScene;
 }
 
-<<<<<<< HEAD
-//////FUNCTION TO DECIDE WHICH USER ACTION TO USE
-var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
-=======
 
 
 
@@ -109,7 +105,6 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
 
 //FUNCTION TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //SPLIT USER STRING INTO 2
->>>>>>> master
 
   var splitInput = playerInput.split(" ");
   if (splitInput.includes("LOOK") && !(splitInput.includes("TAKE")) && !(splitInput.includes("USE")) )  {
@@ -136,12 +131,8 @@ var theDecider = function(playerInput) {         //SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
-<<<<<<< HEAD
 
 }//end decider FXN
-=======
-}//end split FXN
->>>>>>> master
 
 
 //LIST OF FUNCTIONS that empower USER ACTIONS
