@@ -156,6 +156,7 @@ body {
   background-color: #555;
   flex-direction: column;
   flex: 3 1 30em;
+  background-image: url("../img/inputbackground.png");
 }
 
 .form-group .input-control {
