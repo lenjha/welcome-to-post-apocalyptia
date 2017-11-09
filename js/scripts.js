@@ -245,11 +245,10 @@ $(document).ready(function(){
     $("#description-pane").show();
   });//end take function
   $('#help').click(function(){
-    // changeScene(introScreen);
-    // $('.card').show();
-    // $(".card-text").text("In this area there are things you can 'look' at. If you find an item you may 'take' it for your inventory, you may also 'use' your items on certain features in this area.");
+    $("#description-text").text("");
+    $("#description-text").append("In this area there are things you can <span class='interactable'>look</span> at. If you find an item you may <span class='interactable'>take</span> it for your inventory, you may also <span class='interactable'>use</span> features in this environment.");
+    $("#description-pane").show();
   });
-  $('.card').click(function(){
-    $('.card').hide();
-  });
+
+
 });//end doc ready function
