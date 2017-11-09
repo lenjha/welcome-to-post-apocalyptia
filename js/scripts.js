@@ -1,10 +1,13 @@
-objTake
 function Scene(description, img){
   this.description = description;
   this.img = img;
   this.container = [];
 }
 
+function Item(name, img){
+  this.name = name;
+  this.img = img;
+}
 var clearInput = function(){
   $("#user-input").empty();
 }
@@ -70,6 +73,7 @@ var objUse = {
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
 
+//SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("intro image", "img/intro.jpg");
 var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg");
@@ -79,9 +83,13 @@ var cryoRoom4 = new Scene ("cryo room", "img/cryoroom-corpse-nathan.jpg");
 var cryoRoom5 = new Scene ("cryo room", "img/cryoroom-taken-keycard-nathan.jpg");
 var gameOver = new Scene ("game over", "img/victory.jpg");
 var currentScene = titleScreen;
+// INVENTORY items
+var pipe = new Item("PIPE", "img/pipe.png");
+var keycard = new Item("KEYCARD", "img/keycard.png");
 //////LIST OF ARRAYS
 var inventoryArray = [];
-var useArray = ["DOOR", "BUTTON"]; //interaction objects.
+var inventoryImages = [pipe, keycard];
+// var useArray = ["DOOR", "BUTTON"]; //interaction objects.
 var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
 var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
@@ -122,7 +130,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else if (splitAction === "INVENTORY") {
     return inventoryArray;
   } else {
-    return "Command must be in the form of 'action object' separated by a space.";
+    return "Command must be in the form of <span class'interactable'>'action object'</span> separated by a space.";
   }
 
 
@@ -169,7 +177,7 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
 
     }
   }//end for loop
-  return "There's nothing of interest here.";
+  return "The too warm room you are in has two <span class='interactable'>cryotubes</span>, and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like one of the <span class='interactable'>cyrotubes</span> is damaged. You begin to perspire and think to yourself... 'how do I get out of here?!'";
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
@@ -178,10 +186,15 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
       inventoryArray.push(objTake.items[i]);
       if (objTake.items[i] === "PIPE"){
         changeScene(cryoRoom2);
+        //add pipe image to INVENTORY DISPLAY
+        $("#inv1").attr('src', inventoryImages[0].img);
+        $("#inv1").attr('alt', "pipe");
         objUse.items.push("PIPE");
         objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you bust something open?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
+        $("#inv2").attr('src', inventoryImages[1].img);
+        $("#inv2").attr('alt', "keycard");
         objUse.items.push("KEYCARD");
         objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
       }
@@ -230,28 +243,15 @@ $(document).ready(function(){
   });//end user submit fxn
 
   $("#use").click(function(){
-    var useInput = $("#user-command").val().toUpperCase();
-    var useResult = useFeature(useInput);
-    $("#description-text").text("");
-    $("#description-text").append(useResult);
-    $("#description-pane").show();
+
+    $("#user-command").val("use ");
 
   });//end use function
   $("#examine").click(function(){
-
-    var examineInput = $("#user-command").val().toUpperCase();
-    var examineResult = examineFeature(examineInput);
-    $("#description-text").text("");
-    $("#description-text").append(examineResult);
-    $("#description-pane").show();
-
+    $("#user-command").val("look ");
   });//end examine function
   $("#take").click(function(){
-    var takeInput = $("#user-command").val().toUpperCase();
-    var takeResult = takeFeature(takeInput);
-    $("#description-text").text("");
-    $("#description-text").append(takeResult + "<p>Your inventory: " + inventoryArray + "</p>");
-    $("#description-pane").show();
+    $("#user-command").val("take ");
   });//end take function
   $('#help').click(function(){
     $("#description-text").text("");
