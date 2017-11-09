@@ -141,7 +141,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
       }
     }
   } else {
-    return "Command must be in the form of <span class'interactable'>'action object'</span> separated by a space.";
+    return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
 
   // if (splitAction === "LOOK") {
