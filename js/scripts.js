@@ -26,17 +26,17 @@ var objExamine = {
 
   description:[
 
-    "You can hardly believe you crawled out of this damn thing.", //desc 1
+    "You can hardly believe you crawled out of this damn thing.", //desc 0
 
-    "You've taken the <span class='interactable'>pipe</span>, rendering this thing even more busted. There's a <span class='interactable'>corpse</span> inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
+    "You've taken the <span class='interactable'>pipe</span>, rendering this thing even more busted. There's a <span class='interactable'>corpse</span> inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 1
 
-    "He's dead, Jim.", //desc 3
-
-
-    "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a <span class='interactable'>keycard</span>..", //desc 4
+    "A body. You can't see him very clearly. Maybe you have to use something on this cryotube to smash it open.", //desc 2
 
 
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>keycard</span> on the <span class='interactable'>scanner</span> to have any hope of getting through."] // desc 5
+    "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a <span class='interactable'>keycard</span>..", //desc 3
+
+
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a <span class='interactable'>keycard</span> on the <span class='interactable'>scanner</span> to have any hope of getting through."] // desc 4
 };// end LOOK object
 
 //OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -205,6 +205,7 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
         $("#inv2").attr('alt', "keycard");
         objUse.items.push("KEYCARD");
         objUse.description.push("<span class='interactable'>Keycard</span> can't be used on itself. Maybe it will allow you to use something else.");
+        objExamine.description[2] = "He's dead, Jim.";
       }
 
       return objTake.description[i];
@@ -271,6 +272,7 @@ $(document).ready(function(){
 
     $("#description-text").append("<p>This game relies on a text command interface. To take actions in this world, you must enter commands of at least two words, like \"look at <span class=\"interactable\">cryotube1</span>.\" </p><br>" +
     "<p><span class='interactable'>LOOK</span>ing at an object will give you more information about that object.</p><br>" +
+    "<p><span class='interactable'>LOOK</span> without specifying an object will look around the room.</p><br>" +
     "<p>If you find an <span class='interactable'>ITEM</span> you may be able to <span class='interactable'>TAKE</span> it and keep it in your inventory.</p><br>" +
     "<p><span class='interactable'>USE</span> will allow you to either use an item from your inventory or an object in the environment (e.g. \"Use <span class='interactable'>key</span> on <span class='interactable'>lock</span>\").</p><br>" +
     "<p>The general pattern is 'action + object'.</p>");
