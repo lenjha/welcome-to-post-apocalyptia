@@ -99,6 +99,9 @@ body {
   width: 100%;
 }
 
+.footer{
+  visibility: hidden;
+}
 
 .footer {
   padding: 10px;

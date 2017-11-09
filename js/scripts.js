@@ -124,8 +124,6 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class'interactable'>'action object'</span> separated by a space.";
   }
-
-
 }//end split FXN
 
 
@@ -165,7 +163,6 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
     } else if (objExamine.items[i] === examineInput) {
       return objExamine.description[i];
-
     }
   }//end for loop
   return "The too warm room you are in has two <span class='interactable'>cryotubes</span>, and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like one of the <span class='interactable'>cyrotubes</span> is damaged. You begin to perspire and think to yourself... 'how do I get out of here?!'";
@@ -197,12 +194,11 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
-
   //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
-
     $('#start-button').hide();
     changeScene(cryoRoom1);
+    $(".footer").css("visibility", "visible");
   });
 
   //CLOSE TEXTUAL DESCRIPTION PANE
@@ -222,21 +218,20 @@ $(document).ready(function(){
   });//end user submit fxn
 
   $("#use").click(function(){
-
     $("#user-command").val("use ");
-
   });//end use function
+
   $("#examine").click(function(){
     $("#user-command").val("look ");
   });//end examine function
+
   $("#take").click(function(){
     $("#user-command").val("take ");
   });//end take function
+
   $('#help').click(function(){
     $("#description-text").text("");
     $("#description-text").append("In this area there are things you can <span class='interactable'>look</span> at. If you find an item you may <span class='interactable'>take</span> it for your inventory.  You may also <span class='interactable'>use</span> features in this environment.  You may go about this in two different styles.  The first is by writing the action then the object upon which you would like to act, separated by a space, of course.  The other of these styles is to simply type in the object you would like to act upon, then clicking the button displaying the action you would like to take.");
     $("#description-pane").show();
   });
-
-
 });//end doc ready function
