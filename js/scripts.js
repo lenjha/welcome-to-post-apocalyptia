@@ -188,11 +188,13 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
         changeScene(cryoRoom2);
         //add pipe image to INVENTORY DISPLAY
         $("#inv1").attr('src', inventoryImages[0].img);
+        $("#inv1").attr('alt', "pipe");
         objUse.items.push("PIPE");
         objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you bust something open?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
         $("#inv2").attr('src', inventoryImages[1].img);
+        $("#inv2").attr('alt', "keycard");
         objUse.items.push("KEYCARD");
         objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
       }
