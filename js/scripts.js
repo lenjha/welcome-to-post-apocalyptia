@@ -217,12 +217,17 @@ $(document).ready(function(){
     $('#start-button').hide();
     changeScene(cryoRoom1);
     $("#description-text").text("");
-    $("#description-text").append("<p>Your thoughts, your dreams...</p> <br>" +
-      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium.  You vaguely recall being ushered into a building after news of something falling, but beyond that are mental holes that ebb and flow with the muck of your recollections.</p><br>" +
-      "<p>It is quiet now.</p><br>" +
-      "<p>The faint sound of mechanical hissing gradually swells as warmth crawls into your skin.</p><br>" +
-      "<p>Your consciousness awakens to the sharp panic of having forgotten something important.</p><br>" +
-      "<p>Something very important.</p>");
+    $("#description-text").append("<div class='opening'><p>Your thoughts, your dreams, puerile fantasies, all thought of individuality...</p> <br>" +
+
+      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium, bloodflow allowing it to never fully coagulate but preventing you from holding onto any thought all the same.</p><br><p>You vaguely recall being ushered into a bunker after news of something falling, but beyond that are mental holes that ebb and flow with the muck of recollection.  Vignettes come and go, slipping capture.  White jackets, alarming monitors.  Red lights, blaring sirens.</p><br>" +
+
+      "<p>Cacophany.</p><br><br><br>" +
+
+      "<p>But it is quiet now.</p><br><br><br>" +
+
+      "<p>The faint sound of mechanical hissing gradually swells, cutting into your ear as warmth tickles your skin.  Your consciousness is alert to the sharp panic of having forgotten something important.</p><br><br>" +
+
+      "<p>Something very important.</p></div>");
     $("#description-pane").show();
   });
 
@@ -243,19 +248,20 @@ $(document).ready(function(){
   });//end user submit fxn
 
   $("#use").click(function(){
-
     $("#user-command").val("use ");
 
   });//end use function
   $("#examine").click(function(){
     $("#user-command").val("look ");
   });//end examine function
+
   $("#take").click(function(){
     $("#user-command").val("take ");
   });//end take function
+
   $('#help').click(function(){
     $("#description-text").text("");
-    $("#description-text").append("In this area there are things you can <span class='interactable'>look</span> at. If you find an item you may <span class='interactable'>take</span> it for your inventory.  You may also <span class='interactable'>use</span> features in this environment.  You may go about this in two different styles.  The first is by writing the action then the object upon which you would like to act, separated by a space, of course.  The other of these styles is to simply type in the object you would like to act upon, then clicking the button displaying the action you would like to take.");
+    $("#description-text").append("<p>In this area there are <span class='interactable'>OBJECTS</span> you can look at.</p><br><p>If you find an <span class='interactable'>ITEM</span> you may take it for your inventory.</p><br><p>You may also use <span class='interactable'>FEATURES</span> in this environment.</p><br><p>The general pattern is 'action + object'.</p>");
     $("#description-pane").show();
   });
 
