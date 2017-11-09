@@ -29,13 +29,13 @@ var objExamine = {
 
     "You can hardly believe you crawled out of this damn thing.", //desc 1
 
-    "You've taken the <span class='interactable'>PIPE</span>, rendering this thing even more busted. There's a <span class='interactable'>CORPSE</span> inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
+    "You've taken the <span class='interactable'>pipe</span>, rendering this thing even more busted. There's a <span class='interactable'>corpse</span> inside. Maybe he's carrying something? You'd have to smash the glass to check.", //desc 2
 
     "He's dead, Jim.", //desc 3
 
-    "A typical g-34t keycard <span class='interactable'>SCANNER</span>. Useless to you, unless of course you have a KEYCARD..", //desc 4
+    "A typical g-34t keycard <span class='interactable'>scanner</span>. Useless to you, unless of course you have a keycard..", //desc 4
 
-    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a KEYCARD on the <span class='interactable'>SCANNER</span> to have any hope of getting through."] // desc 5
+    "A old door. Somewhat rusted, but clearly built to last. You'll need to use a keycard on the <span class='interactable'>scanner</span> to have any hope of getting through."] // desc 5
 };// end LOOK object
 
 //OBJECTS for taking. ITEM INDEX MUST MATCH DESCRIPTION INDEX!!
@@ -57,14 +57,14 @@ var objUse = {
     "SCANNER"],  //3
 
   description: [
-    "A heavy <span class='interactable'>DOOR</span>. No way can you get through without using the <span class='interactable'>SCANNER</span>, but you'll need a KEYCARD.", // 0 Door
+    "A heavy <span class='interactable'>door</span>. No way can you get through without using the <span class='interactable'>scanner</span>, but you'll need a keycard.", // 0 Door
 
-    "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jello-O.", //1 C1
+    "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jell-O.", //1 C1
 
     "You can't get inside this thing with your bare hands.",
     //2 C2
 
-    "A standard SCANNER that accepts a KEYCARD."] //3
+    "A standard scanner that accepts a keycard."] //3
 };//end USE object
 
 
@@ -72,7 +72,7 @@ var objUse = {
 
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
-var roomDescription = "The too warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"How do I get out of here?!\"";
+var roomDescription = "The too-warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"<em>How do I get out of here?!</em>\"";
 //SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("intro image", "img/intro.jpg");
@@ -148,7 +148,7 @@ var useFeature = function(useInput) {     //USE STUFF
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
       objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
-      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within.  This is actually not the worst piñata you've ever opened.";
+      return "You smash open the tube, revealing the <span class='interactable'>corpse</span> within.  This is actually not the worst piñata you've ever opened. <br><br> Funny how you know that.";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
@@ -167,13 +167,13 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
 
-      objTake.description.push("With some effort, you manage to pry the loose <span class='interactable'>PIPE</span> off of the <span class='interactable'>CRYOTUBE2</span> frame.");
-      return "The cryotube looks as though it is filled with moldy cheesecake. You notice a loose <span class='interactable'>PIPE</span> that you might be able to pry off. Oh, and there's a <span class='interactable'>CORPSE</span> in there.";
+      objTake.description.push("With some effort, you manage to pry the loose <span class='interactable'>pipe</span> off of the <span class='interactable'>cryotube2</span> frame.");
+      return "The cryotube looks as though it is filled with moldy cheesecake. You notice a loose <span class='interactable'>pipe</span> that you might be able to pry off. Oh, and there's a <span class='interactable'>corpse</span> in there.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       objTake.items.push("KEYCARD");
-      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired <span class='interactable'>KEYCARD</span>!");
+      objTake.description.push("Congratulations, you've robbed the dead guy. Acquired <span class='interactable'>keycard</span>!");
       changeScene(cryoRoom4);
-      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
+      return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>keycard</span> hanging around his neck?";
     } else if (objExamine.items[i] === examineInput) {
       return objExamine.description[i];
     }
@@ -191,13 +191,13 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
         $("#inv1").attr('src', inventoryImages[0].img);
         $("#inv1").attr('alt', "pipe");
         objUse.items.push("PIPE");
-        objUse.description.push("You can't use a PIPE on itself, but perhaps it will let you bust something open?");
+        objUse.description.push("You can't use a <span class='interactable'>pipe</span> on itself, but perhaps it will let you bust something open?");
       } else if (objTake.items[i] === "KEYCARD"){
         changeScene(cryoRoom5);
         $("#inv2").attr('src', inventoryImages[1].img);
         $("#inv2").attr('alt', "keycard");
         objUse.items.push("KEYCARD");
-        objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
+        objUse.description.push("<span class='interactable'>Keycard</span> can't be used on itself. Maybe it will allow you to use something else.");
       }
 
       return objTake.description[i];
@@ -218,11 +218,9 @@ $(document).ready(function(){
     $("#description-text").text("");
     $("#description-text").append("<p>Your thoughts, your dreams, puerile fantasies, all thought of individuality...</p>" +
 
-      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium, bloodflow allowing it to never fully coagulate but preventing you from holding onto any thought all the same.</p><br><p>You vaguely recall being ushered into a bunker after news of something falling, but beyond that are mental holes that ebb and flow with the muck of recollection.  Vignettes come and go, slipping capture.  White jackets, alarming monitors.  Red lights, blaring sirens.</p>" +
+      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium, bloodflow allowing it to never fully coagulate but preventing you from holding onto any thought all the same.</p><br><p>You vaguely recall being ushered into a bunker after news of something falling, but beyond that are mental holes that ebb and flow with the muck of recollection.  Vignettes come and go, slipping capture.  White jackets, alarming monitors.  Red lights, blaring sirens.  Cacophany.</p><br>" +
 
-      "<p>Cacophany.</p>" +
-
-      "<p>But it is quiet now.</p>" +
+      "<p>But it is quiet now.</p><br>" +
 
       "<p>The faint sound of mechanical hissing gradually swells, cutting into your ear as warmth tickles your skin.  Your consciousness is alert to the sharp panic of having forgotten something important.</p>" +
 
@@ -260,7 +258,7 @@ $(document).ready(function(){
 
   $('#help').click(function(){
     $("#description-text").text("");
-    $("#description-text").append("<p>In this area there are <span class='interactable'>OBJECTS</span> you can look at.</p><br><p>If you find an <span class='interactable'>ITEM</span> you may take it for your inventory.</p><br><p>You may also use <span class='interactable'>FEATURES</span> in this environment.</p><br><p>The general pattern is 'action + object'.</p>");
+    $("#description-text").append("<p>In this area there are <span class='interactable'>objects</span> you can look at.</p><br><p>If you find an <span class='interactable'>item</span> you may take it for your inventory.</p><br><p>You may also use <span class='interactable'>features</span> in this environment.</p><br><p>The general pattern is 'action + object'.</p>");
     $("#description-pane").show();
   });
 });//end doc ready function
