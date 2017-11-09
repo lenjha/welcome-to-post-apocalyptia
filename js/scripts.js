@@ -71,7 +71,7 @@ var objUse = {
 //GLOBAL VARIABLES
 
 var doorLocked = true; ///door to new area/victory, depending on time
-var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
+var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in objTake
 var roomDescription = "The too warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"How do I get out of here?!\"";
 //SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
@@ -89,23 +89,13 @@ var keycard = new Item("KEYCARD", "img/keycard.png");
 //////LIST OF ARRAYS
 var inventoryArray = [];
 var inventoryImages = [pipe, keycard];
-// var useArray = ["DOOR", "BUTTON"]; //interaction objects.
-var examineArray = ["CRYOTUBE1", "CRYOTUBE2", "CORPSE", "SCANNER", "DOOR"];    //array for reference only. these can be DESCRIBED with EXAMINE
 
-var takeArray = []; //these can be removed from takeArray and placed in inventoryArray
-                    //objects to be added via examine: PIPE, KEYCARD
 
 /////CHANGES SCENE
 var changeScene = function(newScene){
   $("#scene-view").attr('src', newScene.img)
   currentScene = newScene;
 }
-
-
-
-
-
-
 
 //////FUNCTION TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
@@ -135,26 +125,8 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-=======
-  // if (splitAction === "LOOK") {
-  //   return examineFeature(splitItem);
-  // } else if (splitAction === "USE") {
-  //   return useFeature(splitItem);
-  // } else if (splitAction === "TAKE") {
-  //   return takeFeature(splitItem);
-  // } else if (splitAction === "INVENTORY") {
-  //   return inventoryArray;
-  // } else {
-  //   return "You can only perform one action on one object.";
-  // }
-
->>>>>>> master
->>>>>>> master
-}//end split FXN
+}//end decider FXN
 
 
 ////LIST OF FUNCTIONS that empower USER ACTIONS
@@ -181,7 +153,6 @@ var useFeature = function(useInput) {     ///USE STUFF
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
-  debugger
   for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
