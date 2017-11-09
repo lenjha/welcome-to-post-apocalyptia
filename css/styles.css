@@ -32,6 +32,7 @@
   right: 0;
   left: 0;
   text-align: center;
+  letter-spacing: 0.1em;
   font-size: 300%;
   background-color: rgba(150, 50, 50, 0.9);
   height: 50px;
@@ -101,6 +102,9 @@ body {
   width: 100%;
 }
 
+.footer{
+  visibility: hidden;
+}
 
 .footer {
   padding: 10px;
@@ -177,6 +181,7 @@ body {
   padding: 0;
 }
 .inventory-label{
+  margin-top: 5px;
   color: #f7ac2c;
   text-align: center;
   letter-spacing: 0.6em;

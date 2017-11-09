@@ -72,7 +72,7 @@ var objUse = {
 
 var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
-
+var roomDescription = "The too warm room you are in has two cryotubes - <span class='interactable'>cryotube1</span> and <span class='interactable'>cryotube2</span> -  and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like <span class='interactable'>cyrotube2</span> is damaged. You begin to perspire and think to yourself... \"How do I get out of here?!\"";
 //SCENE DECLARATIONS
 var titleScreen = new Scene ("title image", "img/title.jpg");
 var introScreen = new Scene ("intro image", "img/intro.jpg");
@@ -100,50 +100,46 @@ var changeScene = function(newScene){
   $("#scene-view").attr('src', newScene.img)
   currentScene = newScene;
 }
-// var unlock = function(useInput) {
-//   debugger
-//   if (useInput === "DOOR" && inventoryArray.includes("SCREWDRIVER")) {
-//     alert("You manage to wriggle the door open with help from your trusty screwdriver.  SCENE CHANGE TIME!");
-//   }
-// }
 
 
 
 
-/////FUNCTION TO CLEAR USER INPUT
-// var clearInput = function() {
-//   .reset();
-// }
+
+
 
 //////FUNCTION TO DECIDE WHICH USER ACTION TO USE
 var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
-  // debugger
+
   var splitInput = playerInput.split(" ");
-  // var splitAction = splitInput[0];
-  // var splitItem = splitInput[1];
-  // return splitAction + " " + splitItem; //VERIFY SPLIT
   if (splitInput.includes("LOOK") && !(splitInput.includes("TAKE")) && !(splitInput.includes("USE")) )  {
     for (i = 0; i < objExamine.items.length; i++) {
       if (splitInput.includes(objExamine.items[i])) {
         return examineFeature(objExamine.items[i]);
       }
     }
+    return roomDescription;
   } else if (splitInput.includes("TAKE") && !(splitInput.includes("LOOK")) && !(splitInput.includes("USE")) )  {
     for (i = 0; i < objTake.items.length; i++) {
       if (splitInput.includes(objTake.items[i])) {
         return takeFeature(objTake.items[i]);
       }
     }
+    return "What are you trying to take?"
   } else if (splitInput.includes("USE") && !(splitInput.includes("LOOK")) && !(splitInput.includes("TAKE")) )  {
     for (i = 0; i < objUse.items.length; i++) {
       if (splitInput.includes(objUse.items[i])) {
         return useFeature(objUse.items[i]);
       }
     }
+    return "What are you trying to use?"
   } else {
     return "Command must be in the form of <span class='interactable'>'action object'</span> separated by a space.";
   }
+<<<<<<< HEAD
+=======
 
+<<<<<<< HEAD
+=======
   // if (splitAction === "LOOK") {
   //   return examineFeature(splitItem);
   // } else if (splitAction === "USE") {
@@ -156,6 +152,8 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   //   return "You can only perform one action on one object.";
   // }
 
+>>>>>>> master
+>>>>>>> master
 }//end split FXN
 
 
@@ -183,6 +181,7 @@ var useFeature = function(useInput) {     ///USE STUFF
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
+  debugger
   for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
@@ -196,10 +195,9 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
       return "He's dead, but he may still be useful to you. Could that be a <span class='interactable'>KEYCARD</span> hanging around his neck?";
     } else if (objExamine.items[i] === examineInput) {
       return objExamine.description[i];
-
     }
   }//end for loop
-  return "The too warm room you are in has two <span class='interactable'>cryotubes</span>, and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like one of the <span class='interactable'>cyrotubes</span> is damaged. You begin to perspire and think to yourself... 'how do I get out of here?!'";
+  return roomDescription;
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
@@ -220,9 +218,7 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
         objUse.items.push("KEYCARD");
         objUse.description.push("KEYCARD can't be used on itself. Maybe it will allow you to use something else.");
       }
-      // var removeItem = takeInput;
-      // takeArray.splice( $.inArray(removeItem,takeArray) ,1 ); //jquery remove from takeArray
-      // takeArray.splice(takeArray.indexOf(takeInput),1); //javascript remove from takeArray
+
       return objTake.description[i];
     }
   }//end for loop
@@ -233,11 +229,11 @@ var takeFeature = function(takeInput) {    ///TAKE STUFF
 
 ////FRONT END
 $(document).ready(function(){
-
   //TITLE SCREEN START BUTTON
   $('#start-button').click(function(){
     $('#start-button').hide();
     changeScene(cryoRoom1);
+    $(".footer").css("visibility", "visible");
     $("#description-text").text("");
     $("#description-text").append("<div class='opening'><p>Your thoughts, your dreams, puerile fantasies, all thought of individuality...</p> <br>" +
 
@@ -271,8 +267,8 @@ $(document).ready(function(){
 
   $("#use").click(function(){
     $("#user-command").val("use ");
-
   });//end use function
+
   $("#examine").click(function(){
     $("#user-command").val("look ");
   });//end examine function
@@ -286,6 +282,4 @@ $(document).ready(function(){
     $("#description-text").append("<p>In this area there are <span class='interactable'>OBJECTS</span> you can look at.</p><br><p>If you find an <span class='interactable'>ITEM</span> you may take it for your inventory.</p><br><p>You may also use <span class='interactable'>FEATURES</span> in this environment.</p><br><p>The general pattern is 'action + object'.</p>");
     $("#description-pane").show();
   });
-
-
 });//end doc ready function
