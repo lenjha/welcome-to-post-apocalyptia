@@ -83,6 +83,9 @@ body {
   color: #3f3;
 }
 
+.container {
+  font-family: 'Montserrat', sans-serif;
+}
 
 .scene-display {
   position: relative;
@@ -197,4 +200,9 @@ body {
 .inventory img {
   height: 100px;
   width: 100px;
+}
+
+
+.opening {
+  overflow: scroll;
 }

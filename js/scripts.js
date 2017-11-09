@@ -235,17 +235,17 @@ $(document).ready(function(){
     changeScene(cryoRoom1);
     $(".footer").css("visibility", "visible");
     $("#description-text").text("");
-    $("#description-text").append("<div class='opening'><p>Your thoughts, your dreams, puerile fantasies, all thought of individuality...</p> <br>" +
+    $("#description-text").append("<p>Your thoughts, your dreams, puerile fantasies, all thought of individuality...</p>" +
 
-      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium, bloodflow allowing it to never fully coagulate but preventing you from holding onto any thought all the same.</p><br><p>You vaguely recall being ushered into a bunker after news of something falling, but beyond that are mental holes that ebb and flow with the muck of recollection.  Vignettes come and go, slipping capture.  White jackets, alarming monitors.  Red lights, blaring sirens.</p><br>" +
+      "<p>All sight and sound meld into a thick slurry of memory.  As if someone had taken cement dust and injected it into your cranium, bloodflow allowing it to never fully coagulate but preventing you from holding onto any thought all the same.</p><br><p>You vaguely recall being ushered into a bunker after news of something falling, but beyond that are mental holes that ebb and flow with the muck of recollection.  Vignettes come and go, slipping capture.  White jackets, alarming monitors.  Red lights, blaring sirens.</p>" +
 
-      "<p>Cacophany.</p><br><br><br>" +
+      "<p>Cacophany.</p>" +
 
-      "<p>But it is quiet now.</p><br><br><br>" +
+      "<p>But it is quiet now.</p>" +
 
-      "<p>The faint sound of mechanical hissing gradually swells, cutting into your ear as warmth tickles your skin.  Your consciousness is alert to the sharp panic of having forgotten something important.</p><br><br>" +
+      "<p>The faint sound of mechanical hissing gradually swells, cutting into your ear as warmth tickles your skin.  Your consciousness is alert to the sharp panic of having forgotten something important.</p>" +
 
-      "<p>Something very important.</p></div>");
+      "<p>Something very important.</p>");
     $("#description-pane").show();
   });
 
