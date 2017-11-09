@@ -119,14 +119,20 @@ body {
 .text-and-submit{
   margin-top: 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: row;
   flex: 0 1 auto;
   flex-wrap: nowrap;
 }
+
+#user-input{
+  display: flex;
+  justify-content: center;
+}
+
 .button-list{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .btn{
   background-color: #222;
@@ -154,12 +160,13 @@ body {
   margin-top: 0px;
  }
 
-input.input-control {
+#user-command {
   width: 20em;
   font-size: 2em;
   background-color: #000;
   color: #3f3;
 }
+
 
 .inventory{
   display: flex;
