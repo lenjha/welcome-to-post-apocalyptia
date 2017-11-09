@@ -59,7 +59,7 @@ var objUse = {
   description: [
     "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 0 Door
 
-    "No way are you getting back in this damn thing.  That gunk only looks like blue raspberry Jello-O.", //1 C1
+    "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jello-O.", //1 C1
 
     "You can't get inside this thing with your bare hands.",
     //2 C2
@@ -130,7 +130,7 @@ var theDecider = function(playerInput) {         //////SPLIT USER STRING INTO 2
   } else if (splitAction === "INVENTORY") {
     return inventoryArray;
   } else {
-    return "Command must be in the form of 'action object' separated by a space.";
+    return "Command must be in the form of <span class'interactable'>'action object'</span> separated by a space.";
   }
 
 
@@ -164,7 +164,6 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
   for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
-
       objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE2 frame.");
       return "The cryotube looks as though it is filled with moldy cheesecake. You notice a loose <span class='interactable'>PIPE</span> that you might be able to pry off. Oh, and there's a <span class='interactable'>CORPSE</span> in there.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
@@ -177,7 +176,7 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
 
     }
   }//end for loop
-  return "There's nothing of interest here.";
+  return "The too warm room you are in has two <span class='interactable'>cryotubes</span>, and a <span class='interactable'>door</span> with a <span class='interactable'>scanner</span>. It looks like one of the <span class='interactable'>cyrotubes</span> is damaged. You begin to perspire and think to yourself... 'how do I get out of here?!'";
 }//end examineFeature function
 
 var takeFeature = function(takeInput) {    ///TAKE STUFF
@@ -236,26 +235,15 @@ $(document).ready(function(){
   });//end user submit fxn
 
   $("#use").click(function(){
-    var useInput = $("#user-command").val().toUpperCase();
-    var useResult = useFeature(useInput);
-    alert(useResult);
+
+    $("#user-command").val("use ");
 
   });//end use function
   $("#examine").click(function(){
-
-    var examineInput = $("#user-command").val().toUpperCase();
-    var examineResult = examineFeature(examineInput);
-    $("#description-text").text("");
-    $("#description-text").append(examineResult);
-    $("#description-pane").show();
-
+    $("#user-command").val("look ");
   });//end examine function
   $("#take").click(function(){
-    var takeInput = $("#user-command").val().toUpperCase();
-    var takeResult = takeFeature(takeInput);
-    $("#description-text").text("");
-    $("#description-text").append(takeResult + "<p>Your inventory: " + inventoryArray + "</p>");
-    $("#description-pane").show();
+    $("#user-command").val("take ");
   });//end take function
   $('#help').click(function(){
     $("#description-text").text("");
