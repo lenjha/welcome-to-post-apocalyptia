@@ -169,7 +169,6 @@ var useFeature = function(useInput) {     //USE STUFF
 }//end examineFeature function
 
 var examineFeature = function(examineInput) {   ///VIEW STUFF
-  debugger
   for (i = 0; i < objExamine.items.length; i++) {
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
