@@ -54,7 +54,7 @@ var objUse = {
     "SCANNER"],  //3
 
   description: [
-    "A heavy DOOR. No way can you get through without using the SCANNER, but you'll need a KEYCARD.", // 0 Door
+    "A heavy <span class='interactable'>DOOR</span>. No way can you get through without using the <span class='interactable'>SCANNER</span>, but you'll need a KEYCARD.", // 0 Door
 
     "No way are you getting back in this damn thing; that gunk only looks like blue raspberry Jello-O.", //1 C1
 
@@ -71,7 +71,7 @@ var doorLocked = true; ///door to new area/victory, depending on time
 var tubeSmashed = false; ///allows you to examine CORPSE which spawns KEYCARD in takeArray
 
 var titleScreen = new Scene ("title image", "img/title.jpg");
-var introScreen = new Scene ("this is where you learn about the premise of the game", "img/help.jpg");
+var introScreen = new Scene ("intro image", "img/intro.jpg");
 var cryoRoom1 = new Scene ("cryo room", "img/cryoroom-default.jpg");
 var cryoRoom2 = new Scene ("cryo room", "img/cryoroom-no-pipe.jpg");
 var cryoRoom3 = new Scene ("cryo room", "img/cryoroom-corpse.jpg");
@@ -135,16 +135,16 @@ var useFeature = function(useInput) {     ///USE STUFF
     if ((useInput === "CRYOTUBE2") && (inventoryArray.includes("PIPE")) && (tubeSmashed === false)) {
       tubeSmashed = true;
       changeScene(cryoRoom3);
-      objExamine.description[1] = "You've already smashed this tube.";
+      objExamine.description[1] = "You've already smashed this tube.  Good work, hero.";
       objUse.description[2] = "You can't use this thing. It's pretty busted up, thanks to you."
       objUse.items.push("CORPSE");
-      objUse.description.push("How exactly do you use a corpse? Actually, please don't answer that.");
-      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within";
+      objUse.description.push("How exactly do you use a corpse?  Actually, please don't answer that.");
+      return "You smash open the tube, revealing the <span class='interactable'>CORPSE</span> within.  This is actually not the worst piñata you've ever opened.";
 
     } else if ((useInput === "SCANNER") && (inventoryArray.includes("KEYCARD")) && (doorLocked === true)) {
       doorLocked = false;
       changeScene(gameOver);
-      return "After a short delay, the heavy door manages to creak open.";
+      return "The scanner light remains red after you initially jam the keycard into position.  You flip the keycard by your face and blow into the cartridge before trying it again.  After a short delay, the light glows green and the heavy door squeals open.";
     } else if (objUse.items[i] === useInput) {
       return objUse.description[i];
     }
@@ -157,7 +157,7 @@ var examineFeature = function(examineInput) {   ///VIEW STUFF
     if ((examineInput === "CRYOTUBE2") && !(inventoryArray.includes("PIPE"))) {
       objTake.items.push("PIPE");
 
-      objTake.description.push("With some effort, you manage to pry the loose PIPE off of the CRYOTUBE2 frame.");
+      objTake.description.push("With some effort, you manage to pry the loose <span class='interactable'>PIPE</span> off of the <span class='interactable'>CRYOTUBE2</span> frame.");
       return "The cryotube looks as though it is filled with moldy cheesecake. You notice a loose <span class='interactable'>PIPE</span> that you might be able to pry off. Oh, and there's a <span class='interactable'>CORPSE</span> in there.";
     } else if ((examineInput === "CORPSE") && !(inventoryArray.includes("KEYCARD")) && (tubeSmashed === true)) {
       objTake.items.push("KEYCARD");
